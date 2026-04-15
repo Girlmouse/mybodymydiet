@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — My Body My Diet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #cc482b;
+  --red-dark: #aa1111;
+  --lime: #c4d21c;
+  --lime-dark: #9fbb1b;
+  --lime-pale: #eef5c0;
+  --cream: #f1e3c3;
+  --ink: #0d0d0d;
+  --ink-mid: #2a2a2a;
+  --ink-muted: #555555;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'Lato', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--red);
+  padding: 1.2rem 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-link {
+  position: absolute;
+  left: 1.2rem;
+  color: rgba(241,227,195,0.7);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--lime); }
+
+.header-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.header-logo em { color: var(--lime); font-style: italic; }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  background: var(--ink);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.hero-strip h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--cream);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.hero-strip h1 em { color: var(--lime); font-style: italic; }
+
+.hero-strip p {
+  font-size: 0.82rem;
+  color: rgba(241,227,195,0.45);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ── PROFILE ── */
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.profile-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  border: 3px solid var(--lime);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-placeholder {
+  font-size: 2.8rem;
+}
+
+.profile-intro {
+  flex: 1;
+  padding-top: 0.3rem;
+}
+
+.profile-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.profile-tagline {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--ink-mid);
+}
+
+.article-body p {
+  margin-bottom: 1.3rem;
+}
+
+.article-body p:last-child { margin-bottom: 0; }
+
+.article-body strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.article-body em {
+  font-style: italic;
+  color: var(--red);
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--ink);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  margin: 2rem 0;
+}
+
+.callout-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--lime);
+  margin-bottom: 0.8rem;
+}
+
+.callout-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.callout-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.callout-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.callout-text {
+  font-size: 0.92rem;
+  color: var(--cream);
+  line-height: 1.55;
+}
+
+.callout-text strong { color: var(--lime); }
+
+/* ── CTA ── */
+.cta-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.cta-btn {
+  padding: 0.85rem 1.6rem;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  display: inline-block;
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,0,0,0.18); }
+.cta-btn.red  { background: var(--red); color: white; }
+.cta-btn.lime { background: var(--lime); color: var(--ink); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--red-dark);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.footer-logo em { color: var(--lime); font-style: italic; }
+.footer-note { font-size: 0.82rem; font-weight: 700; color: var(--lime); }
+
+/* ── MOBILE ── */
+@media (max-width: 520px) {
+  .profile { flex-direction: column; align-items: center; text-align: center; }
+  .cta-row { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-link">← Back</a>
+  <div class="header-logo">My Body <em>My Diet</em></div>
+</header>
+
+<div class="hero-strip">
+  <h1>About <em>Me</em></h1>
+  <p>The story behind this site</p>
+</div>
+
+<main>
+
+  <!-- Profile -->
+  <div class="profile">
+    <div class="profile-photo">
+      <!-- Replace src with your actual photo -->
+      <div class="profile-photo-placeholder">👩</div>
+    </div>
+    <div class="profile-intro">
+      <div class="profile-name">Hi, I'm Joana.</div>
+      <div class="profile-tagline">Food lover. Home cook. Reluctant diet researcher.<br>Not a nutritionist — just someone who figured some things out.</div>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <div class="article-body">
+
+    <p>I love food. I love cooking when I feel like it and ordering out when I don't — it's my way of supporting local business, and I'm sticking with that story. But while I love almost all food, my body eventually made me rethink some of it.</p>
+
+    <p>We all get busy and tend to ignore what our bodies are telling us. But those little ignored signals have a way of adding up, and at some point you have to deal with them. Without too much drama and private detail — after years of <em>this and that</em> — I finally found a simple, straightforward path that actually worked. This site is me leaving the notes behind for anyone who might need them.</p>
+
+    <p>It starts with knowing exactly what your body has a hard time with. You could keep a food journal, but that's a slow process and you're essentially experimenting on yourself, which is not ideal. I chose to get a <strong>food sensitivity test</strong>. That test changed everything — like a fog lifted. I was surprised by some of the items on the results. Things I was eating <em>every single day.</em> No wonder, huh?</p>
+
+    <p>Armed with that information, I finally had something to work with. Bye bye eggs, garlic, and milk. It's also worth noting that age, activity level, and for women — especially around menopause — play a real role in how your body processes food. Worth keeping in mind.</p>
+
+    <p>I decided to go with the Mediterranean diet. I love hummus, pita, veggies, nuts, and fruit. Perfect, right? Except after a few months I was bloated like a balloon. What the heck? That's when I discovered <strong><a href="https://www.monashfodmap.com" target="_blank" rel="noopener" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">FODMAP</a></strong> — foods that didn't show up on my sensitivity test but are known to cause digestive issues anyway, just because. So, no more hummus. But then what in the world am I supposed to eat?</p>
+
+    <p>In my case it came down to a mix. I stay away from beans, fermented foods, and the items I know cause my specific issues — but otherwise I eat whatever I want. The key was making a list. Seeing it clearly: what's okay, what's sometimes okay, and what to avoid. That list became my compass.</p>
+
+    <p>I also never liked meal planning. I have no idea what I'll want in three days, and nobody should have to commit to that. So I don't. Instead, I just make sure I always have the right things on hand.</p>
+
+  </div>
+
+  <!-- Steps callout -->
+  <div class="callout">
+    <div class="callout-label">The short version</div>
+    <div class="callout-steps">
+      <div class="callout-step">
+        <div class="callout-num">1</div>
+        <div class="callout-text"><strong>Identify your culprits.</strong> A food sensitivity test is the fastest way to cut through the noise.</div>
+      </div>
+      <div class="callout-step">
+        <div class="callout-num">2</div>
+        <div class="callout-text"><strong>Stock what works.</strong> Your pantry and fridge are your best friends. Keep the right things around.</div>
+      </div>
+      <div class="callout-step">
+        <div class="callout-num">3</div>
+        <div class="callout-text"><strong>Eat from what you have.</strong> Meals come together naturally when the ingredients already work for you.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p>It felt like a chore at the beginning. Now I'm very confident with what I eat — and I know to expect some cramps the next day if I decide to indulge in eggs anyway. Worth it sometimes. I own that choice.</p>
+
+    <p>It all starts with Step 1. The knowing. Everything else follows from there.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <a href="index.html#read" class="cta-btn red">Read the Blog →</a>
+    <a href="food-list.html" class="cta-btn lime">Make My Food List →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">My Body <em>My Diet</em></div>
+  <div class="footer-note">Not a nutritionist. Not a coach. Just someone who learned some things and left the door open.</div>
+</footer>
+
+</body>
+</html>
