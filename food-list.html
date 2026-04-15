@@ -242,10 +242,23 @@ footer {
 
 /* ── PRINT STYLES ── */
 @media print {
-  header, .instruction, .cumberto-row, .actions, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .actions { display: none; }
-  .entry input { border-bottom: 1px solid #ccc; }
+  .cumberto-row { display: none; }
   body { background: white; }
+  header { padding: 0.8rem 1.5rem; }
+  main { padding: 0.8rem 1rem; }
+  .columns { gap: 0.5rem; }
+  .col-header { padding: 0.6rem; }
+  .entry { padding: 0; }
+  .entry input { 
+    border: none;
+    border-bottom: 1px solid #ccc; 
+    padding: 0.3rem 0.2rem;
+    font-size: 0.82rem;
+  }
+  .instruction { padding: 0.5rem 1.5rem; }
+  footer { margin-top: 0.5rem; padding: 0.8rem; }
 }
 
 /* ── MOBILE ── */
