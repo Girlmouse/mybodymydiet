@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You Serious? — My Body My Diet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #cc482b;
+  --red-dark: #aa1111;
+  --lime: #c4d21c;
+  --lime-dark: #9fbb1b;
+  --lime-pale: #eef5c0;
+  --cream: #f1e3c3;
+  --ink: #0d0d0d;
+  --ink-mid: #2a2a2a;
+  --ink-muted: #555555;
+  --teal: #2e7a82;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'Lato', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--red);
+  padding: 1.2rem 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-link {
+  position: absolute;
+  left: 1.2rem;
+  color: rgba(241,227,195,0.7);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--lime); }
+
+.header-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.header-logo em { color: var(--lime); font-style: italic; }
+
+/* ── HERO ── */
+.article-hero {
+  background: var(--ink);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.article-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--lime);
+  margin-bottom: 0.8rem;
+}
+
+.article-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  color: white;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.article-hero h1 em { color: var(--lime); font-style: italic; }
+
+.article-meta {
+  font-size: 0.78rem;
+  color: rgba(241,227,195,0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--ink-mid);
+}
+
+.article-body p {
+  margin-bottom: 1.4rem;
+}
+
+.article-body p:last-child { margin-bottom: 0; }
+
+.article-body strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.article-body em {
+  font-style: italic;
+  color: var(--red);
+}
+
+.article-body a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+.article-body a:hover { color: var(--red); }
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  border-left: 4px solid var(--lime);
+  padding: 0.8rem 1.2rem;
+  margin: 2rem 0;
+  background: white;
+  border-radius: 0 10px 10px 0;
+}
+
+.pull-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 0 !important;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--ink);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  margin: 2rem 0;
+}
+
+.callout-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--lime);
+  margin-bottom: 0.8rem;
+}
+
+.callout-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.callout-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.callout-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.callout-text {
+  font-size: 0.92rem;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+.callout-text strong { color: var(--lime); }
+.callout-text a { color: var(--teal); font-weight: 700; }
+
+/* ── DIVIDER ── */
+.article-divider {
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--lime));
+  opacity: 0.2;
+  margin: 2.5rem 0;
+  border-radius: 2px;
+}
+
+/* ── CTA ── */
+.cta-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.cta-btn {
+  padding: 0.85rem 1.6rem;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  display: inline-block;
+  color: inherit;
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,0,0,0.18); }
+.cta-btn.red  { background: var(--red); color: white; }
+.cta-btn.lime { background: var(--lime); color: var(--ink); }
+.cta-btn.teal { background: var(--teal); color: white; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--red-dark);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.footer-logo em { color: var(--lime); font-style: italic; }
+.footer-note { font-size: 0.82rem; font-weight: 700; color: var(--lime); }
+.footer-contact { margin-top: 0.8rem; }
+.footer-contact a {
+  color: rgba(241,227,195,0.5);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.footer-contact a:hover { color: var(--lime); }
+
+/* ── MOBILE ── */
+@media (max-width: 520px) {
+  .cta-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-link">← Back</a>
+  <div class="header-logo">My Body <em>My Diet</em></div>
+</header>
+
+<div class="article-hero">
+  <div class="article-tag">Mindset · Getting Started</div>
+  <h1>Are You <em>Serious?</em></h1>
+  <div class="article-meta">By Joana &nbsp;·&nbsp; 4 min read</div>
+</div>
+
+<main>
+  <div class="article-body">
+
+    <p>Are you fed up with feeling off? Bloated, constipated, sluggish, or just generally not right? All of those signals are your body trying to get your attention. And here's the thing — it's been trying for a while. You've just been busy.</p>
+
+    <p>There is no shortcut and no magic behind feeling better. Just science, your body, and the willingness to actually listen to it. The question is: <strong>are you serious about this?</strong> Because if you are, it starts with you — and only you.</p>
+
+  </div>
+
+  <div class="pull-quote">
+    <p>Nobody can want this for you. A nutritionist can guide you, a coach can support you, but at the end of the day you're the one making choices three times a day.</p>
+  </div>
+
+  <div class="article-body">
+
+    <p>The best first step — and I mean the single most useful thing you can do — is getting a <strong>food sensitivity test</strong>. Not a fad diet, not an elimination guessing game, not three months of journaling everything you eat. A test. Concrete information about what your specific body has a hard time with. That information is your foundation. Everything else builds on it.</p>
+
+    <p>There are plenty of options out there when it comes to food sensitivity tests, so do a little research and choose one with a solid reputation. Once you have those results in hand, things start to get real — and a little surprising. Spoiler: it's usually something you eat every day.</p>
+
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Once you have your results — here's the plan</div>
+    <div class="callout-steps">
+      <div class="callout-step">
+        <div class="callout-num">1</div>
+        <div class="callout-text"><strong>Make a list.</strong> Seeing things on paper makes them real. OK foods, Sometimes foods, No foods. Simple as that. <a href="food-list.html">Use the free worksheet →</a></div>
+      </div>
+      <div class="callout-step">
+        <div class="callout-num">2</div>
+        <div class="callout-text"><strong>Stock your pantry and fridge.</strong> If the right foods are around, eating for yourself becomes effortless. If they're not, you'll default to whatever's convenient.</div>
+      </div>
+      <div class="callout-step">
+        <div class="callout-num">3</div>
+        <div class="callout-text"><strong>Eat from what you have.</strong> Plan meals if that works for you, or just throw together things you know are safe. Either way works — as long as you know what's safe.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>One more thing worth knowing: your sensitivity test won't catch everything. There's a whole category of foods called <strong><a href="https://www.monashfodmap.com" target="_blank" rel="noopener">FODMAPs</a></strong> — certain carbohydrates that are known to cause digestive issues in a lot of people, regardless of sensitivities. They don't show up on a test because they're not an immune response, just foods that certain digestive systems struggle to process. Worth looking into, especially if you've cleaned up your diet and still feel off.</p>
+
+    <p>You can absolutely work with a nutritionist, a coach, or a doctor through this process — and if you have access to that, use it. But none of them can make the choices for you. <em>That part is yours.</em> Every meal, every grocery run, every time you look at a menu and do a quick scan in your head — that's you, making choices for your body.</p>
+
+  </div>
+
+  <div class="article-divider"></div>
+
+  <div class="article-body">
+    <p>So much of how we feel day to day is connected to what we eat. Energy, mood, focus, sleep, skin — all of it is tangled up in food in ways most of us don't think about until something goes wrong. You don't have to be perfect. You just have to be serious. <strong>Your body will thank you for it.</strong></p>
+  </div>
+
+  <div class="cta-row">
+    <a href="food-list.html" class="cta-btn lime">Make My Food List →</a>
+    <a href="index.html#read" class="cta-btn red">More Articles →</a>
+    <a href="about.html" class="cta-btn teal">About Joana →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">My Body <em>My Diet</em></div>
+  <div class="footer-note">Not a nutritionist. Not a coach. Just someone who learned some things and left the door open.</div>
+  <div class="footer-contact"><a href="mailto:contact@lunabellegames.com">✉ Contact Me</a></div>
+</footer>
+
+</body>
+</html>
