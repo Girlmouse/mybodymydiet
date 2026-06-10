@@ -95,7 +95,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1.5rem 200px;
+  padding: 3rem 1.5rem 160px;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -218,8 +218,13 @@ body {
   text-align: left;
 }
 
-/* entry buttons */
-.entry-buttons {
+/* ── ENTRY BUTTONS BELOW HERO ── */
+.entry-buttons-wrap {
+  background: #2d5a27;
+  padding: 2rem 1.5rem 2.5rem;
+  display: flex;
+  justify-content: center;
+}
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -691,6 +696,14 @@ footer {
     Diet is the core — because it's the fuel that feeds and affects everything we do.
   </div>
 
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ── ENTRY BUTTONS ── -->
+<div class="entry-buttons-wrap">
   <div class="entry-buttons">
     <a href="#start-here" class="entry-btn first">
       First time here? <span class="entry-btn-arrow">→</span>
@@ -699,12 +712,7 @@ footer {
       Welcome back <span class="entry-btn-arrow">→</span>
     </a>
   </div>
-
-  <div class="scroll-hint">
-    <span>scroll</span>
-    <div class="scroll-arrow"></div>
-  </div>
-</section>
+</div>
 
 <!-- ── START HERE ── -->
 <section id="start-here" class="start-bg">
