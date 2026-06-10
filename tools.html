@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools — My Body My Diet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #cc482b; --red-dark: #aa1111; --cream: #f1e3c3;
+  --lime: #c4d21c; --lime-dark: #9fbb1b; --lime-pale: #eef5c0;
+  --ink: #0d0d0d; --ink-mid: #2a2a2a; --ink-muted: #555555;
+  --teal: #4a9fa8; --radius: 14px; --shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Lato', sans-serif; min-height: 100vh; }
+
+header { background: var(--ink); padding: 1.2rem 1.5rem; position: relative; display: flex; align-items: center; justify-content: center; }
+.back-link { position: absolute; left: 1.2rem; color: rgba(241,227,195,0.7); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.back-link:hover { color: var(--lime); }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+.header-logo em { color: var(--lime); font-style: italic; }
+
+.page-hero { background: var(--ink); padding: 3rem 1.5rem 2.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+.page-hero-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 900; color: var(--lime); margin-bottom: 0.6rem; }
+.page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3rem); color: var(--cream); font-weight: 700; margin-bottom: 0.6rem; }
+.page-hero h1 em { color: var(--lime); font-style: italic; }
+.page-hero p { font-size: 0.95rem; color: rgba(241,227,195,0.55); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+.tools-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+.tool-card {
+  background: white; border-radius: var(--radius); padding: 1.6rem; box-shadow: var(--shadow);
+  display: flex; align-items: flex-start; gap: 1.2rem;
+  border-left: 4px solid var(--lime-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.tool-card:hover { transform: translateX(4px); box-shadow: 0 6px 28px rgba(0,0,0,0.16); }
+.tool-card.coming { opacity: 0.65; border-left-color: rgba(0,0,0,0.12); }
+
+.tool-icon { font-size: 1.8rem; flex-shrink: 0; width: 44px; text-align: center; }
+.tool-info { flex: 1; }
+.tool-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.tool-desc { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.55; margin-bottom: 0.7rem; }
+.tool-link { font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime-dark); text-decoration: none; }
+.tool-link:hover { text-decoration: underline; }
+.tool-coming-tag { font-size: 0.72rem; font-weight: 700; color: rgba(0,0,0,0.3); letter-spacing: 0.08em; text-transform: uppercase; }
+
+.suggest-strip { background: var(--lime-pale); border-radius: var(--radius); padding: 1.5rem; margin-top: 2.5rem; text-align: center; }
+.suggest-strip p { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 0.8rem; }
+.suggest-link { font-size: 0.85rem; font-weight: 700; color: var(--red); text-decoration: none; }
+.suggest-link:hover { text-decoration: underline; }
+
+footer { background: var(--red-dark); padding: 1.5rem; text-align: center; margin-top: 3rem; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); font-weight: 700; margin-bottom: 0.3rem; }
+.footer-logo em { color: var(--lime); font-style: italic; }
+.footer-note { font-size: 0.82rem; font-weight: 700; color: var(--lime); }
+.footer-contact { margin-top: 0.8rem; }
+.footer-contact a { color: rgba(241,227,195,0.5); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.footer-contact a:hover { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-link">← Home</a>
+  <a href="index.html" class="header-logo">My Body <em>My Diet</em></a>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-label">Tools</div>
+  <h1>Help yourself <em>help yourself.</em></h1>
+  <p>Free tools to help you figure out your body, your food, and your habits. No sign-up, no app, no data collected. Ever.</p>
+</div>
+
+<main>
+
+  <div class="tools-grid">
+
+    <a href="food-list.html" class="tool-card">
+      <div class="tool-icon">🥦</div>
+      <div class="tool-info">
+        <div class="tool-name">My Food List Worksheet</div>
+        <div class="tool-desc">Sort your foods into OK / Sometimes / No based on how they actually make you feel. Save it, print it, take it to your doctor. Yours forever.</div>
+        <div class="tool-link">Open Free Tool →</div>
+      </div>
+    </a>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">🔥</div>
+      <div class="tool-info">
+        <div class="tool-name">Daily Calorie Needs Calculator</div>
+        <div class="tool-desc">Based on your height, weight, age, and activity level — not a generic number from the internet.</div>
+        <div class="tool-coming-tag">Coming soon</div>
+      </div>
+    </div>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">⚖️</div>
+      <div class="tool-info">
+        <div class="tool-name">Unit Converter</div>
+        <div class="tool-desc">Cups to grams, ounces to ml, tablespoons to teaspoons — all the kitchen conversions in one place.</div>
+        <div class="tool-coming-tag">Coming soon</div>
+      </div>
+    </div>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">💧</div>
+      <div class="tool-info">
+        <div class="tool-name">Daily Water Intake Calculator</div>
+        <div class="tool-desc">How much water you actually need based on your body and activity. Not the generic "8 glasses a day."</div>
+        <div class="tool-coming-tag">Coming soon</div>
+      </div>
+    </div>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">🍽️</div>
+      <div class="tool-info">
+        <div class="tool-name">Nutrition Lookup</div>
+        <div class="tool-desc">How many calories in a cup of cooked pinto beans? What's the protein in 3oz of salmon? Look it up without leaving the site.</div>
+        <div class="tool-coming-tag">Coming soon</div>
+      </div>
+    </div>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">📊</div>
+      <div class="tool-info">
+        <div class="tool-name">Macro Calculator</div>
+        <div class="tool-desc">How much protein, carbs, and fat for your specific goals. Personalized, not templated.</div>
+        <div class="tool-coming-tag">Coming soon</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="suggest-strip">
+    <p>Is there a tool you wish existed here? A calculator, a lookup, something that would actually help you? Let me know.</p>
+    <a href="mailto:justagirlmouse@gmail.com" class="suggest-link">✉ Suggest a tool →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">My Body <em>My Diet</em></div>
+  <div class="footer-note">Not a nutritionist. Not a coach. Just someone who learned some things and left the door open.</div>
+  <div class="footer-contact"><a href="mailto:justagirlmouse@gmail.com">✉ Say Hello</a></div>
+</footer>
+
+</body>
+</html>

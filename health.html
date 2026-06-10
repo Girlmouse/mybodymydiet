@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health — My Body My Diet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #cc482b; --red-dark: #aa1111; --cream: #f1e3c3;
+  --lime: #c4d21c; --lime-dark: #9fbb1b;
+  --ink: #0d0d0d; --ink-mid: #2a2a2a; --ink-muted: #555555;
+  --teal: #4a9fa8; --teal-dark: #357880; --radius: 14px; --shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Lato', sans-serif; min-height: 100vh; }
+
+header { background: var(--teal-dark); padding: 1.2rem 1.5rem; position: relative; display: flex; align-items: center; justify-content: center; }
+.back-link { position: absolute; left: 1.2rem; color: rgba(241,227,195,0.7); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.back-link:hover { color: var(--lime); }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+.header-logo em { color: var(--lime); font-style: italic; }
+
+.page-hero { background: var(--ink); padding: 3rem 1.5rem 2.5rem; text-align: center; }
+.page-hero-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 900; color: var(--teal); margin-bottom: 0.6rem; }
+.page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3rem); color: var(--cream); font-weight: 700; margin-bottom: 0.6rem; }
+.page-hero h1 em { color: var(--teal); font-style: italic; }
+.page-hero p { font-size: 0.95rem; color: rgba(241,227,195,0.55); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal-dark); font-weight: 900; margin-bottom: 1.2rem; }
+
+.article-grid { display: flex; flex-direction: column; gap: 1rem; }
+.article-card { background: white; border-radius: var(--radius); padding: 1.4rem 1.5rem; box-shadow: var(--shadow); border-left: 4px solid var(--teal); text-decoration: none; display: block; color: inherit; transition: transform 0.2s, box-shadow 0.2s; }
+.article-card:hover { transform: translateX(4px); box-shadow: 0 6px 28px rgba(0,0,0,0.16); }
+.article-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); font-weight: 900; margin-bottom: 0.4rem; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 0.4rem; }
+.article-excerpt { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6; }
+.article-coming { font-size: 0.75rem; color: rgba(0,0,0,0.25); font-style: italic; margin-top: 0.3rem; }
+
+footer { background: var(--red-dark); padding: 1.5rem; text-align: center; margin-top: 3rem; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); font-weight: 700; margin-bottom: 0.3rem; }
+.footer-logo em { color: var(--lime); font-style: italic; }
+.footer-note { font-size: 0.82rem; font-weight: 700; color: var(--lime); }
+.footer-contact { margin-top: 0.8rem; }
+.footer-contact a { color: rgba(241,227,195,0.5); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.footer-contact a:hover { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-link">← Home</a>
+  <a href="index.html" class="header-logo">My Body <em>My Diet</em></a>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-label">Health</div>
+  <h1>Know your <em>body.</em></h1>
+  <p>What's actually going on inside, how food connects to everything, and how to stop ignoring the signals your body's been sending.</p>
+</div>
+
+<main>
+
+  <div class="section-label">Articles</div>
+
+  <div class="article-grid">
+    <div class="article-card">
+      <div class="article-tag">Movement</div>
+      <div class="article-title">I wanted to run 2 miles on the treadmill but my knees said Nope</div>
+      <div class="article-excerpt">Ambition met reality, and reality won. Here's what I actually did instead — and why it worked better anyway.</div>
+      <div class="article-coming">Coming soon</div>
+    </div>
+    <div class="article-card">
+      <div class="article-tag">Body Signals</div>
+      <div class="article-title">The thing nobody tells you about getting older</div>
+      <div class="article-excerpt">Your body changes whether you're paying attention or not. Paying attention is better.</div>
+      <div class="article-coming">Coming soon</div>
+    </div>
+    <div class="article-card">
+      <div class="article-tag">Testing</div>
+      <div class="article-title">Why I got a food sensitivity test and what happened after</div>
+      <div class="article-excerpt">Spoiler: it was something I was eating every single day. Of course it was.</div>
+      <div class="article-coming">Coming soon</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">My Body <em>My Diet</em></div>
+  <div class="footer-note">Not a nutritionist. Not a coach. Just someone who learned some things and left the door open.</div>
+  <div class="footer-contact"><a href="mailto:justagirlmouse@gmail.com">✉ Say Hello</a></div>
+</footer>
+
+</body>
+</html>

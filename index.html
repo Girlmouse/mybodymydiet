@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Body My Diet</title>
+<title>My Body My Diet — Eat for Yourself</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -24,7 +24,6 @@
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -41,7 +40,7 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  background: rgba(13,13,13,0.92);
+  background: rgba(13,13,13,0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(196,210,28,0.15);
   display: flex;
@@ -60,6 +59,7 @@ body {
   font-weight: 700;
   color: var(--cream);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .sticky-nav-logo em { color: var(--lime); font-style: italic; }
@@ -67,6 +67,8 @@ body {
 .sticky-nav-links {
   display: flex;
   gap: 0.2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .sticky-nav-link {
@@ -87,7 +89,7 @@ body {
 
 /* ── HERO ── */
 .hero {
-  background: var(--red);
+  background: #2d5a27;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -103,12 +105,11 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(196,210,28,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 80%, rgba(0,0,0,0.2) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 30% 20%, rgba(196,210,28,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(0,0,0,0.25) 0%, transparent 50%);
   pointer-events: none;
 }
 
-/* floating blobs */
 .blob {
   position: absolute;
   border-radius: 50%;
@@ -128,7 +129,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 7vw, 3.8rem);
   font-weight: 700;
-  color: var(--cream);
+  color: #ffffff;
   letter-spacing: -0.01em;
   line-height: 1.1;
   margin-bottom: 0.3rem;
@@ -137,16 +138,13 @@ body {
   animation: fadeUp 0.8s ease both;
 }
 
-.hero-logo em {
-  color: var(--lime);
-  font-style: italic;
-}
+.hero-logo em { color: var(--lime); font-style: italic; }
 
 .hero-tagline {
   font-size: 0.78rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(241,227,195,0.6);
+  color: rgba(255,255,255,0.85);
   font-weight: 700;
   margin-bottom: 2.5rem;
   position: relative;
@@ -187,62 +185,55 @@ body {
 .hero-welcome {
   position: relative;
   z-index: 1;
-  max-width: 520px;
+  max-width: 580px;
   animation: fadeUp 0.8s 0.45s ease both;
 }
 
-.hero-welcome h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  color: var(--cream);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.hero-welcome p {
+.hero-welcome-text {
   font-size: 1.05rem;
-  color: rgba(241,227,195,0.85);
-  line-height: 1.7;
-  font-weight: 300;
-  margin-bottom: 2.2rem;
+  color: #ffffff;
+  line-height: 1.8;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  text-align: left;
 }
 
-/* nav buttons */
-.hero-nav {
+.hero-welcome-text p { margin-bottom: 1rem; }
+.hero-welcome-text p:last-child { margin-bottom: 0; }
+.hero-welcome-text strong { color: var(--lime); font-weight: 700; }
+.hero-welcome-text em { font-style: italic; color: rgba(255,255,255,0.85); }
+
+/* entry buttons */
+.entry-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 320px;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
   animation: fadeUp 0.8s 0.55s ease both;
+  margin-bottom: 1.5rem;
 }
 
-.nav-pill {
+.entry-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.3rem;
+  gap: 0.6rem;
+  padding: 1rem 1.8rem;
   border-radius: 50px;
   font-family: 'Lato', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   cursor: pointer;
   border: none;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.25);
 }
 
-.nav-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-.nav-pill:active { transform: translateY(0); }
-
-.nav-pill.read   { background: var(--cream); color: var(--ink); }
-.nav-pill.tools  { background: var(--lime); color: var(--ink); }
-.nav-pill.start  { background: var(--red-dark); color: var(--cream); border: 2px solid var(--red-dark); }
-
-.nav-pill-arrow { font-size: 1.1rem; opacity: 0.6; }
+.entry-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.3); }
+.entry-btn.first { background: var(--cream); color: var(--ink); }
+.entry-btn.returning { background: var(--lime); color: var(--ink); }
+.entry-btn-arrow { font-size: 1.1rem; opacity: 0.6; }
 
 /* scroll hint */
 .scroll-hint {
@@ -307,6 +298,62 @@ body {
   margin-bottom: 2rem;
 }
 
+/* ── CATEGORY NAV SECTION ── */
+.category-nav-section {
+  background: var(--ink);
+  padding: 3rem 1.5rem;
+}
+
+.category-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.category-nav-section .section-label { color: var(--lime); }
+.category-nav-section .section-title { color: var(--cream); }
+.category-nav-section .section-title em { color: var(--lime); }
+.category-nav-section .section-intro { color: rgba(241,227,195,0.6); }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.category-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--cream);
+  transition: background 0.2s, transform 0.2s;
+  display: block;
+}
+
+.category-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+.category-card-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+
+.category-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+
+.category-card-desc {
+  font-size: 0.83rem;
+  color: rgba(241,227,195,0.5);
+  line-height: 1.5;
+}
+
+.category-card.diet { border-top: 3px solid var(--lime); }
+.category-card.health { border-top: 3px solid var(--teal); }
+.category-card.beauty { border-top: 3px solid #e88fa0; }
+.category-card.lifestyle { border-top: 3px solid var(--red); }
+
 /* ── ARTICLE CARDS ── */
 .article-grid {
   display: flex;
@@ -355,6 +402,8 @@ body {
 
 .article-card.lime { border-left-color: var(--lime-dark); }
 .article-card.dark { border-left-color: var(--ink); }
+.article-card.teal { border-left-color: var(--teal); }
+.article-card.pink { border-left-color: #e88fa0; }
 
 /* ── DIVIDER ── */
 .divider {
@@ -480,7 +529,6 @@ body {
   margin-top: 0.1rem;
 }
 
-.step-body {}
 .step-title {
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
@@ -489,6 +537,40 @@ body {
   margin-bottom: 0.25rem;
 }
 .step-text { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6; }
+
+/* ── DONATE ── */
+.donate-strip {
+  background: var(--cream);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.donate-strip p {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 1.2rem;
+}
+
+.donate-btn {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.donate-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,0,0,0.2); }
 
 /* ── FOOTER ── */
 footer {
@@ -508,14 +590,25 @@ footer {
 .footer-logo em { color: var(--lime); font-style: italic; }
 
 .footer-note {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--lime);
   line-height: 1.6;
   max-width: 400px;
-  margin: 0 auto;
-  letter-spacing: 0.01em;
+  margin: 0 auto 0.8rem;
 }
+
+.footer-contact a {
+  color: rgba(241,227,195,0.5);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover { color: var(--lime); }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
@@ -538,17 +631,28 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  .category-grid { grid-template-columns: 1fr; }
+  .entry-buttons { flex-direction: column; align-items: center; }
+  .entry-btn { width: 100%; max-width: 300px; justify-content: center; }
+  .sticky-nav-links { gap: 0; }
+  .sticky-nav-link { padding: 0.4rem 0.45rem; font-size: 0.65rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- ── STICKY NAV ── -->
 <nav class="sticky-nav" id="stickyNav">
-  <div class="sticky-nav-logo">My Body <em>My Diet</em></div>
+  <a href="index.html" class="sticky-nav-logo">My Body <em>My Diet</em></a>
   <div class="sticky-nav-links">
-    <a href="#read" class="sticky-nav-link" data-section="read">Blog</a>
-    <a href="#tools" class="sticky-nav-link" data-section="tools">Tools</a>
-    <a href="#start" class="sticky-nav-link" data-section="start">Start Here</a>
+    <a href="diet.html" class="sticky-nav-link">Diet</a>
+    <a href="health.html" class="sticky-nav-link">Health</a>
+    <a href="beauty.html" class="sticky-nav-link">Beauty</a>
+    <a href="lifestyle.html" class="sticky-nav-link">Lifestyle</a>
+    <a href="tools.html" class="sticky-nav-link">Tools</a>
     <a href="about.html" class="sticky-nav-link">About</a>
   </div>
 </nav>
@@ -562,78 +666,23 @@ footer {
   <div class="hero-logo">My Body <em>My Diet</em></div>
   <div class="hero-tagline">Eat for yourself. Nothing more.</div>
 
-  <!-- Cumberto with speech bubble -->
-  <div class="cumberto-wrap">
-    <div class="speech-bubble">
-      Hi! I'm Cumberto. <strong>No sales pitch here</strong> — just real talk about food and how it makes you feel.
-    </div>
-    <svg class="cumberto-main" width="80" height="152" viewBox="0 0 52 100" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="26" cy="58" rx="14" ry="32" fill="#5a9e3a"/>
-      <ellipse cx="26" cy="58" rx="10" ry="27" fill="#6db84a" opacity="0.45"/>
-      <line x1="20" y1="30" x2="18" y2="85" stroke="#4a8a2a" stroke-width="1.3" opacity="0.35"/>
-      <line x1="26" y1="27" x2="26" y2="87" stroke="#4a8a2a" stroke-width="1.3" opacity="0.35"/>
-      <line x1="32" y1="30" x2="34" y2="85" stroke="#4a8a2a" stroke-width="1.3" opacity="0.35"/>
-      <ellipse cx="26" cy="88" rx="6" ry="4" fill="#4a8a2a"/>
-      <ellipse cx="26" cy="27" rx="5" ry="3" fill="#3a7a20"/>
-      <rect x="24" y="18" width="4" height="10" rx="2" fill="#3a7a20"/>
-      <ellipse cx="33" cy="20" rx="5" ry="2.5" fill="#4a9a20" transform="rotate(-30 33 20)"/>
-      <ellipse cx="19" cy="21" rx="4" ry="2" fill="#4a9a20" transform="rotate(25 19 21)"/>
-      <circle cx="13" cy="45" r="2" fill="#4a8a2a"/>
-      <circle cx="39" cy="52" r="2" fill="#4a8a2a"/>
-      <circle cx="12" cy="62" r="1.5" fill="#4a8a2a"/>
-      <circle cx="40" cy="38" r="1.5" fill="#4a8a2a"/>
-      <circle cx="13" cy="72" r="1.5" fill="#4a8a2a"/>
-      <circle cx="39" cy="68" r="1.5" fill="#4a8a2a"/>
-      <ellipse cx="26" cy="44" rx="11" ry="12" fill="#7acc52" opacity="0.55"/>
-      <rect x="15" y="37" width="9" height="6.5" rx="3" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
-      <rect x="28" y="37" width="9" height="6.5" rx="3" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
-      <line x1="24" y1="40.5" x2="28" y2="40.5" stroke="#1a1a1a" stroke-width="1.8"/>
-      <line x1="15" y1="40.5" x2="11" y2="39" stroke="#1a1a1a" stroke-width="1.5"/>
-      <line x1="37" y1="40.5" x2="41" y2="39" stroke="#1a1a1a" stroke-width="1.5"/>
-      <circle cx="18" cy="39" r="1" fill="white" opacity="0.9"/>
-      <circle cx="31" cy="39" r="1" fill="white" opacity="0.9"/>
-      <circle cx="19.5" cy="40.5" r="2.3" fill="white"/>
-      <circle cx="32.5" cy="40.5" r="2.3" fill="white"/>
-      <circle cx="20" cy="40.5" r="1.3" fill="#1a1a1a"/>
-      <circle cx="33" cy="40.5" r="1.3" fill="#1a1a1a"/>
-      <circle cx="20.5" cy="39.8" r="0.5" fill="white"/>
-      <circle cx="33.5" cy="39.8" r="0.5" fill="white"/>
-      <ellipse cx="14" cy="46" rx="3" ry="1.5" fill="#ff9999" opacity="0.5"/>
-      <ellipse cx="38" cy="46" rx="3" ry="1.5" fill="#ff9999" opacity="0.5"/>
-      <path d="M21 50 Q26 54 31 50" stroke="#1a1a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <polygon points="22,54 25,56 22,58" fill="#cc482b"/>
-      <polygon points="30,54 27,56 30,58" fill="#cc482b"/>
-      <circle cx="26" cy="56" r="1.5" fill="#aa1111"/>
-      <path d="M12 55 Q4 58 3 68" stroke="#5a9e3a" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M40 50 Q48 44 47 36" stroke="#5a9e3a" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <circle cx="47" cy="35" r="3.5" fill="#5a9e3a"/>
-      <rect x="-1" y="66" width="14" height="20" rx="2" fill="#f1e3c3" stroke="#cc482b" stroke-width="1.5"/>
-      <rect x="3" y="64" width="6" height="4" rx="1" fill="#cc482b"/>
-      <line x1="1" y1="73" x2="12" y2="73" stroke="#9fbb1b" stroke-width="1.3"/>
-      <line x1="1" y1="77" x2="12" y2="77" stroke="#9fbb1b" stroke-width="1.3"/>
-      <line x1="1" y1="81" x2="8" y2="81" stroke="#9fbb1b" stroke-width="1.3"/>
-    </svg>
-  </div>
-
-  <!-- Welcome -->
+  <!-- Welcome message -->
   <div class="hero-welcome">
-    <h1>Hi and Welcome!</h1>
-    <p>This is a safe place for real conversations about diet, from a simple human who's been there and done that.</p>
+    <div class="hero-welcome-text">
+      <p>Hi, I'm Joana and I love food, but food does not always love me back. After years of saying <em>"not now!"</em> to my body every time it tried to talk to me about my food choices, I finally decided to listen. With age comes wisdom — hopefully — and aging happens whether you're paying attention or not, so I figured I'd better start paying attention.</p>
+      <p>The most important step in changing your life around is acceptance. Accepting your body the way it is — slow or fast metabolism, lactose or gluten intolerance, allergies, food sensitivities, all of it. The good news is you're not alone. All of us have some combination of those things in different proportions, so don't take it personally.</p>
+      <p>I'm just a simple human with no credentials beyond my own experience, a lot of reading, and a lot of paying attention to what my own body was trying to tell me. <strong>I'm not selling anything. Not collecting your data. Not asking for anything.</strong> I just want to share what I've learned and hope it helps you even a little.</p>
+      <p>If you love science and facts like I do, you're going to have a good time here. Life is too short to stop looking for what works for you.</p>
+    </div>
 
-    <nav class="hero-nav">
-      <a href="#read" class="nav-pill read">
-        Read the Blog <span class="nav-pill-arrow">→</span>
+    <div class="entry-buttons">
+      <a href="#start-here" class="entry-btn first">
+        First time here? <span class="entry-btn-arrow">→</span>
       </a>
-      <a href="#tools" class="nav-pill tools">
-        Free Tools &amp; Booklet <span class="nav-pill-arrow">→</span>
+      <a href="#latest" class="entry-btn returning">
+        Welcome back <span class="entry-btn-arrow">→</span>
       </a>
-      <a href="#start" class="nav-pill start">
-        New Here? Start Here <span class="nav-pill-arrow">→</span>
-      </a>
-      <a href="about.html" class="nav-pill" style="background:#2e7a82;color:white;border:2px solid #2e7a82;">
-        About Me <span class="nav-pill-arrow">→</span>
-      </a>
-    </nav>
+    </div>
   </div>
 
   <div class="scroll-hint">
@@ -642,73 +691,8 @@ footer {
   </div>
 </section>
 
-<!-- ── READ ── -->
-<section id="read">
-  <div class="section reveal">
-    <div class="section-label">From the Blog</div>
-    <h2 class="section-title">Real talk. No <em>fluff.</em></h2>
-    <p class="section-intro">Personal essays and lessons from someone who figured things out by living through them — not from a textbook. Take what helps, leave what doesn't.</p>
-
-    <div class="article-grid">
-      <a href="article-are-you-serious.html" class="article-card">
-        <div class="article-tag">Mindset · Getting Started</div>
-        <div class="article-title">Are You Serious?</div>
-        <div class="article-excerpt">Fed up with feeling off? Bloated, sluggish, just not right? Your body has been trying to get your attention. Here's where to start.</div>
-      </a>
-      <a href="#" class="article-card lime">
-        <div class="article-tag">Food & Body</div>
-        <div class="article-title">Learning to Listen: When Your Body Talks, Are You Hearing It?</div>
-        <div class="article-excerpt">Bloating, fatigue, brain fog — I used to think that was just life. Turns out my body had been trying to tell me something for years.</div>
-      </a>
-      <a href="#" class="article-card dark">
-        <div class="article-tag">Mindset</div>
-        <div class="article-title">The Day I Stopped Trying to Be Good at Eating</div>
-        <div class="article-excerpt">Food guilt is exhausting. Here's how I got off that treadmill — and what I replaced it with.</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── TOOLS ── -->
-<section id="tools" class="tools-bg">
-  <div class="tools-inner reveal">
-    <div class="section-label">Tools</div>
-    <h2 class="section-title">Things to help you <em>help yourself.</em></h2>
-    <p class="section-intro">No app required. No sign-up. Just practical tools to get you started on your own terms.</p>
-
-    <div class="tool-cards">
-      <div class="tool-card">
-        <div class="tool-icon">📋</div>
-        <div class="tool-info">
-          <div class="tool-name">The Onboarding Booklet</div>
-          <div class="tool-desc">A simple, printable guide to map your food rules, build your pantry, and put together meals that actually work for you. Use it for a few weeks, then you won't need it anymore.</div>
-          <a class="tool-link">Download Free PDF →</a>
-        </div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon lime-bg">📬</div>
-        <div class="tool-info">
-          <div class="tool-name">Order a Printed Booklet</div>
-          <div class="tool-desc">Prefer something you can hold? A nicely printed version mailed to you — no frills, just the content.</div>
-          <a class="tool-link">Coming Soon →</a>
-        </div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">🥦</div>
-        <div class="tool-info">
-          <div class="tool-name">My Food List Worksheet</div>
-          <div class="tool-desc">A one-page printable to sort your foods into OK / Sometimes / No columns. The first step to eating for your body, not someone else's.</div>
-          <a class="tool-link" href="food-list.html">Open / Download Free →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── START HERE ── -->
-<section id="start" class="start-bg">
+<section id="start-here" class="start-bg">
   <div class="start-inner reveal">
     <div class="section-label">New Here?</div>
     <h2 class="section-title">Start Here</h2>
@@ -747,14 +731,125 @@ footer {
   </div>
 </section>
 
+<div class="divider"></div>
+
+<!-- ── EXPLORE SECTIONS ── -->
+<section class="category-nav-section">
+  <div class="category-nav-inner reveal">
+    <div class="section-label">Explore</div>
+    <h2 class="section-title">What are you looking <em>for?</em></h2>
+    <p class="section-intro">Real talk on the things that actually affect how you feel. Pick a topic and dive in.</p>
+
+    <div class="category-grid">
+      <a href="diet.html" class="category-card diet">
+        <div class="category-card-icon">🥦</div>
+        <div class="category-card-title">Diet & Food</div>
+        <div class="category-card-desc">Food sensitivities, eating for your body, the pantry method, and what actually works.</div>
+      </a>
+      <a href="health.html" class="category-card health">
+        <div class="category-card-icon">💪</div>
+        <div class="category-card-title">Health</div>
+        <div class="category-card-desc">What's going on inside, how food affects everything, and listening to your body.</div>
+      </a>
+      <a href="beauty.html" class="category-card beauty">
+        <div class="category-card-icon">✨</div>
+        <div class="category-card-title">Beauty</div>
+        <div class="category-card-desc">Skin, hair, nails — what you eat shows up on the outside whether you like it or not.</div>
+      </a>
+      <a href="lifestyle.html" class="category-card lifestyle">
+        <div class="category-card-icon">☕</div>
+        <div class="category-card-title">Lifestyle</div>
+        <div class="category-card-desc">The rest of life — movement, sleep, stress, and everything else that affects how you feel.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── LATEST ── -->
+<section id="latest">
+  <div class="section reveal">
+    <div class="section-label">Latest</div>
+    <h2 class="section-title">Real talk. No <em>fluff.</em></h2>
+    <p class="section-intro">Personal journal entries from someone who figured things out by living through them — not from a textbook. Take what helps, leave what doesn't.</p>
+
+    <div class="article-grid">
+      <a href="article-are-you-serious.html" class="article-card">
+        <div class="article-tag">Diet · Getting Started</div>
+        <div class="article-title">Are You Serious?</div>
+        <div class="article-excerpt">Fed up with feeling off? Bloated, sluggish, just not right? Your body has been trying to get your attention. Here's where to start.</div>
+      </a>
+      <a href="#" class="article-card lime">
+        <div class="article-tag">Diet · Food & Body</div>
+        <div class="article-title">Learning to Listen: When Your Body Talks, Are You Hearing It?</div>
+        <div class="article-excerpt">Bloating, fatigue, brain fog — I used to think that was just life. Turns out my body had been trying to tell me something for years.</div>
+      </a>
+      <a href="#" class="article-card dark">
+        <div class="article-tag">Lifestyle · Mindset</div>
+        <div class="article-title">The Day I Stopped Trying to Be Good at Eating</div>
+        <div class="article-excerpt">Food guilt is exhausting. Here's how I got off that treadmill — and what I replaced it with.</div>
+      </a>
+      <a href="#" class="article-card teal">
+        <div class="article-tag">Health</div>
+        <div class="article-title">My son thinks what I eat is gross</div>
+        <div class="article-excerpt">Coming soon.</div>
+      </a>
+      <a href="#" class="article-card pink">
+        <div class="article-tag">Lifestyle</div>
+        <div class="article-title">I wanted to run 2 miles on the treadmill but my knees said Nope</div>
+        <div class="article-excerpt">Coming soon.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TOOLS ── -->
+<section id="tools" class="tools-bg">
+  <div class="tools-inner reveal">
+    <div class="section-label">Tools</div>
+    <h2 class="section-title">Things to help you <em>help yourself.</em></h2>
+    <p class="section-intro">No app required. No sign-up. Just practical tools to get you started on your own terms.</p>
+
+    <div class="tool-cards">
+      <div class="tool-card">
+        <div class="tool-icon">🥦</div>
+        <div class="tool-info">
+          <div class="tool-name">My Food List Worksheet</div>
+          <div class="tool-desc">A one-page tool to sort your foods into OK / Sometimes / No columns. The first step to eating for your body, not someone else's rules.</div>
+          <a class="tool-link" href="food-list.html">Open Free Tool →</a>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon lime-bg">🔧</div>
+        <div class="tool-info">
+          <div class="tool-name">More Tools Coming</div>
+          <div class="tool-desc">Calculators, converters, and more useful things — all free, all yours, no sign-up required.</div>
+          <a href="tools.html" class="tool-link">See What's Coming →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DONATE ── -->
+<div class="donate-strip">
+  <p>This site is free and always will be. No ads, no subscriptions, no data collection — just one human sharing what she knows. If it helped you, I'd love a coffee. ☕</p>
+  <a href="https://ko-fi.com" target="_blank" class="donate-btn">☕ Buy Me a Coffee</a>
+</div>
+
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">My Body <em>My Diet</em></div>
   <p class="footer-note">Not a nutritionist. Not a coach. Just someone who learned some things and left the door open.</p>
+  <div class="footer-contact" style="margin-top:0.8rem">
+    <a href="mailto:justagirlmouse@gmail.com">✉ Say Hello</a>
+  </div>
 </footer>
 
 <script>
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -766,11 +861,8 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 reveals.forEach(r => revealObserver.observe(r));
 
-// Sticky nav — show after scrolling past hero
 const stickyNav = document.getElementById('stickyNav');
 const hero = document.getElementById('top');
-const navLinks = document.querySelectorAll('.sticky-nav-link');
-const sections = ['read','tools','start'];
 
 window.addEventListener('scroll', () => {
   const heroBottom = hero.getBoundingClientRect().bottom;
@@ -779,16 +871,6 @@ window.addEventListener('scroll', () => {
   } else {
     stickyNav.classList.remove('visible');
   }
-
-  // Highlight active section
-  let current = '';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= 80) current = id;
-  });
-  navLinks.forEach(l => {
-    l.classList.toggle('active', l.dataset.section === current);
-  });
 });
 </script>
 </body>
