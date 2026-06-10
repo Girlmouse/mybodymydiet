@@ -40,13 +40,26 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  background: rgba(13,13,13,0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 12px solid #f1e3c3;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.sticky-nav-top {
+  background: rgba(13,13,13,0.97);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.4rem;
+  padding: 0.75rem 1.8rem;
+}
+
+.sticky-nav-cream {
+  background: #f1e3c3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.8rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .sticky-nav-logo {
@@ -72,16 +85,17 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(241,227,195,0.6);
+  color: var(--ink);
   text-decoration: none;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 2rem;
+  font-size: 0.75rem;
   transition: color 0.2s, background 0.2s;
   white-space: nowrap;
 }
 
-.sticky-nav-link:hover { color: var(--lime); background: rgba(196,210,28,0.1); }
-.sticky-nav-link.active { color: var(--lime); }
+.sticky-nav-link:hover { color: var(--red); background: rgba(204,72,43,0.08); }
+.sticky-nav-link.active { color: var(--red); }
 
 /* ── HERO ── */
 .hero {
@@ -90,7 +104,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7rem 1.5rem 0;
+  padding: 11rem 1.5rem 0;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -141,7 +155,7 @@ body {
   text-transform: uppercase;
   color: rgba(255,255,255,0.85);
   font-weight: 700;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4rem;
   position: relative;
   z-index: 1;
   animation: fadeUp 0.8s 0.1s ease both;
@@ -206,7 +220,7 @@ body {
   text-align: left;
   max-width: 580px;
   line-height: 1.6;
-  margin: 2rem 0 180px;
+  margin: 3rem 0 180px;
   animation: fadeUp 0.8s 0.35s ease both;
   border-left: 3px solid var(--lime);
   padding-left: 1.2rem;
@@ -666,8 +680,10 @@ footer {
 
 <!-- ── STICKY NAV ── -->
 <nav class="sticky-nav" id="stickyNav">
-  <a href="index.html" class="sticky-nav-logo">My Body <em>My Diet</em></a>
-  <div class="sticky-nav-links">
+  <div class="sticky-nav-top">
+    <a href="index.html" class="sticky-nav-logo">My Body <em>My Diet</em></a>
+  </div>
+  <div class="sticky-nav-cream">
     <a href="diet.html" class="sticky-nav-link">Diet</a>
     <a href="health.html" class="sticky-nav-link">Health</a>
     <a href="beauty.html" class="sticky-nav-link">Beauty</a>
