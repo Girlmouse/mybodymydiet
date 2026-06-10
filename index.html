@@ -87,9 +87,11 @@ body {
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
-  padding: 0.4rem 0.9rem;
+  padding: 0.5rem 1.1rem;
   border-radius: 2rem;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   transition: color 0.2s, background 0.2s;
   white-space: nowrap;
 }
@@ -103,11 +105,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12rem 1.5rem 0;
+  padding: 11rem 1.5rem 4rem;
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding-bottom: 240px;
 }
 
 .hero::before {
@@ -206,20 +207,21 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 90px;
+  height: 120px;
   background: #f1e3c3;
   z-index: 0;
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 1100px;
+  width: 90%;
+  max-width: 1400px;
   height: auto;
   display: block;
   margin: 0 auto;
   mix-blend-mode: normal;
   position: relative;
   z-index: 2;
+  filter: brightness(1.15);
 }
 
 /* Hero statement */
@@ -233,7 +235,7 @@ body {
   text-align: left;
   max-width: 580px;
   line-height: 1.6;
-  margin: 2rem auto 260px;
+  margin: 2rem auto 0;
   animation: fadeUp 0.8s 0.35s ease both;
   border-left: 3px solid var(--lime);
   padding-left: 1.2rem;
@@ -685,8 +687,10 @@ footer {
   .sticky-nav-links { gap: 0; }
   .sticky-nav-link { padding: 0.4rem 0.45rem; font-size: 0.65rem; }
   .hero-image { width: 100%; }
-  .hero-statement { margin-bottom: 100px; }
-  .hero { padding-top: 9rem; }
+  .hero-statement { margin-bottom: 0; }
+  .hero { padding-top: 7rem; padding-bottom: 3rem; }
+  .sticky-nav-top-image { height: 70px; }
+  .sticky-nav-top { height: 70px; }
 }
 </style>
 </head>
@@ -695,7 +699,10 @@ footer {
 <!-- ── STICKY NAV ── -->
 <nav class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-top">
-    <a href="index.html" class="sticky-nav-logo">My Body <em>My Diet</em></a>
+    <div class="sticky-nav-top-left">
+      <a href="index.html" class="sticky-nav-logo">My Body <em>My Diet</em></a>
+    </div>
+    <img src="diet-hero.png" alt="" class="sticky-nav-top-image" />
   </div>
   <div class="sticky-nav-cream">
     <a href="diet.html" class="sticky-nav-link">Diet</a>
@@ -718,11 +725,6 @@ footer {
 
   <div class="hero-statement">
     Diet is the core — because it's the fuel that feeds and affects everything we do.
-  </div>
-
-  <div class="hero-image-wrap">
-    <div class="hero-ground"></div>
-    <img src="diet-hero.png" alt="Diet — food is the fuel" class="hero-image" />
   </div>
 
 </section>
