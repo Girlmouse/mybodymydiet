@@ -90,12 +90,10 @@ body {
 /* ── HERO ── */
 .hero {
   background: #2d5a27;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem 160px;
+  padding: 3rem 1.5rem 0;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -183,17 +181,16 @@ body {
 
 /* Hero image */
 .hero-image-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1;
   width: 100%;
+  margin-top: 1rem;
   animation: fadeUp 0.8s 0.2s ease both;
 }
 
 .hero-image {
-  width: 70%;
+  width: 80%;
+  max-width: 900px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -208,14 +205,13 @@ body {
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   font-style: italic;
   color: #ffffff;
-  text-align: center;
+  text-align: left;
   max-width: 580px;
   line-height: 1.6;
-  margin-bottom: 2.5rem;
+  margin: 1.5rem 0 0;
   animation: fadeUp 0.8s 0.35s ease both;
   border-left: 3px solid var(--lime);
   padding-left: 1.2rem;
-  text-align: left;
 }
 
 /* ── ENTRY BUTTONS BELOW HERO ── */
@@ -225,12 +221,16 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.entry-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
   animation: fadeUp 0.8s 0.55s ease both;
-  margin-bottom: 1.5rem;
+  margin: 2rem 0 3rem;
+  position: relative;
+  z-index: 2;
 }
 
 .entry-btn {
@@ -659,7 +659,7 @@ footer {
   .entry-btn { width: 100%; max-width: 300px; justify-content: center; }
   .sticky-nav-links { gap: 0; }
   .sticky-nav-link { padding: 0.4rem 0.45rem; font-size: 0.65rem; }
-  .hero { padding-bottom: 160px; }
+  .hero-image { width: 100%; }
 }
 </style>
 </head>
@@ -688,31 +688,16 @@ footer {
   <div class="hero-tagline">Eat for yourself. Nothing more.</div>
 
   <!-- Hero image + statement -->
-  <div class="hero-image-wrap">
-    <img src="diet-hero.png" alt="Diet — food is the fuel" class="hero-image" />
-  </div>
-
   <div class="hero-statement">
     Diet is the core — because it's the fuel that feeds and affects everything we do.
   </div>
 
-  <div class="scroll-hint">
-    <span>scroll</span>
-    <div class="scroll-arrow"></div>
+  <div class="hero-image-wrap">
+    <img src="diet-hero.png" alt="Diet — food is the fuel" class="hero-image" />
   </div>
-</section>
 
-<!-- ── ENTRY BUTTONS ── -->
-<div class="entry-buttons-wrap">
-  <div class="entry-buttons">
-    <a href="#start-here" class="entry-btn first">
-      First time here? <span class="entry-btn-arrow">→</span>
-    </a>
-    <a href="#latest" class="entry-btn returning">
-      Welcome back <span class="entry-btn-arrow">→</span>
-    </a>
-  </div>
-</div>
+
+</section>
 
 <!-- ── START HERE ── -->
 <section id="start-here" class="start-bg">
