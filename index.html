@@ -171,6 +171,21 @@ body {
   padding-left: 1.2rem;
 }
 
+.hero-illustration {
+  position: relative;
+  z-index: 1;
+  margin-top: 2.5rem;
+  animation: fadeUp 0.8s 0.35s ease both;
+}
+
+.hero-illustration-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* ── SECTIONS ── */
 .section {
   padding: 4rem 1.5rem;
@@ -212,29 +227,8 @@ body {
   padding: 3rem 1.5rem;
 }
 
-.start-inner { max-width: 1100px; margin: 0 auto; }
+.start-inner { max-width: 720px; margin: 0 auto; }
 .start-bg .section-label { color: var(--lime-dark); }
-
-.start-layout {
-  display: flex;
-  align-items: flex-end;
-  gap: 2rem;
-}
-
-.start-content { flex: 1; min-width: 0; }
-
-.start-illustration {
-  flex-shrink: 0;
-  width: 45%;
-  display: flex;
-  align-items: flex-end;
-}
-
-.start-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 .steps { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
 
@@ -385,8 +379,6 @@ footer { background: var(--red-dark); padding: 2rem 1.5rem; text-align: center; 
   .nav-link { padding: 0.4rem 0.5rem; font-size: 0.65rem; }
   .hero { padding: 7rem 1.2rem 3rem; min-height: auto; }
   .hero-logo { font-size: clamp(1.9rem, 8vw, 2.8rem); }
-  .start-layout { flex-direction: column; }
-  .start-illustration { width: 100%; }
 }
 </style>
 </head>
@@ -419,14 +411,16 @@ footer { background: var(--red-dark); padding: 2rem 1.5rem; text-align: center; 
   <div class="hero-statement">
     Diet is the core — because it's the fuel that feeds and affects everything we do.
   </div>
+
+  <div class="hero-illustration">
+    <img src="diet-hero.png" alt="" class="hero-illustration-img" />
+  </div>
 </section>
 
 <!-- ── START HERE ── -->
 <section id="start-here" class="start-bg">
   <div class="start-inner reveal">
-    <div class="start-layout">
-      <div class="start-content">
-        <div class="section-label">New Here?</div>
+    <div class="section-label">New Here?</div>
         <h2 class="section-title">Start Here</h2>
         <p class="section-intro">Feeling overwhelmed by all the noise around food? Here's the simplest path in. No pressure, no timeline.</p>
         <div class="steps">
@@ -458,11 +452,6 @@ footer { background: var(--red-dark); padding: 2rem 1.5rem; text-align: center; 
               <div class="step-text">After a while you won't need the list or the booklet. You'll just know. That's the whole point.</div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="start-illustration">
-        <img src="diet-hero.png" alt="" class="start-img" />
-      </div>
     </div>
   </div>
 </section>
