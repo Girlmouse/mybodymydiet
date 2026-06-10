@@ -181,27 +181,40 @@ body {
 
 .speech-bubble strong { color: var(--red); font-weight: 700; }
 
-/* Welcome message */
-.hero-welcome {
+/* Hero image */
+.hero-image-wrap {
   position: relative;
   z-index: 1;
-  max-width: 580px;
-  animation: fadeUp 0.8s 0.45s ease both;
+  width: 100%;
+  max-width: 680px;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
 }
 
-.hero-welcome-text {
-  font-size: 1.05rem;
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: lighten;
+}
+
+/* Hero statement */
+.hero-statement {
+  position: relative;
+  z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-style: italic;
   color: #ffffff;
-  line-height: 1.8;
-  font-weight: 400;
+  text-align: center;
+  max-width: 580px;
+  line-height: 1.6;
   margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s 0.35s ease both;
+  border-left: 3px solid var(--lime);
+  padding-left: 1.2rem;
   text-align: left;
 }
-
-.hero-welcome-text p { margin-bottom: 1rem; }
-.hero-welcome-text p:last-child { margin-bottom: 0; }
-.hero-welcome-text strong { color: var(--lime); font-weight: 700; }
-.hero-welcome-text em { font-style: italic; color: rgba(255,255,255,0.85); }
 
 /* entry buttons */
 .entry-buttons {
@@ -666,23 +679,22 @@ footer {
   <div class="hero-logo">My Body <em>My Diet</em></div>
   <div class="hero-tagline">Eat for yourself. Nothing more.</div>
 
-  <!-- Welcome message -->
-  <div class="hero-welcome">
-    <div class="hero-welcome-text">
-      <p>Hi, I'm Joana and I love food, but food does not always love me back. After years of saying <em>"not now!"</em> to my body every time it tried to talk to me about my food choices, I finally decided to listen. With age comes wisdom — hopefully — and aging happens whether you're paying attention or not, so I figured I'd better start paying attention.</p>
-      <p>The most important step in changing your life around is acceptance. Accepting your body the way it is — slow or fast metabolism, lactose or gluten intolerance, allergies, food sensitivities, all of it. The good news is you're not alone. All of us have some combination of those things in different proportions, so don't take it personally.</p>
-      <p>I'm just a simple human with no credentials beyond my own experience, a lot of reading, and a lot of paying attention to what my own body was trying to tell me. <strong>I'm not selling anything. Not collecting your data. Not asking for anything.</strong> I just want to share what I've learned and hope it helps you even a little.</p>
-      <p>If you love science and facts like I do, you're going to have a good time here. Life is too short to stop looking for what works for you.</p>
-    </div>
+  <!-- Hero image + statement -->
+  <div class="hero-image-wrap">
+    <img src="diet-hero.png" alt="Diet — food is the fuel" class="hero-image" />
+  </div>
 
-    <div class="entry-buttons">
-      <a href="#start-here" class="entry-btn first">
-        First time here? <span class="entry-btn-arrow">→</span>
-      </a>
-      <a href="#latest" class="entry-btn returning">
-        Welcome back <span class="entry-btn-arrow">→</span>
-      </a>
-    </div>
+  <div class="hero-statement">
+    Diet is the core — because it's the fuel that feeds and affects everything we do.
+  </div>
+
+  <div class="entry-buttons">
+    <a href="#start-here" class="entry-btn first">
+      First time here? <span class="entry-btn-arrow">→</span>
+    </a>
+    <a href="#latest" class="entry-btn returning">
+      Welcome back <span class="entry-btn-arrow">→</span>
+    </a>
   </div>
 
   <div class="scroll-hint">
