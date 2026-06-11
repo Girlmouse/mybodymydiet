@@ -8,13 +8,23 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 main { max-width: 680px; }
-.profile { display: flex; align-items: flex-start; gap: 1.8rem; margin-bottom: 2.5rem; }
-.profile-photo { width: 130px; height: 130px; border-radius: 50%; background: var(--brown); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 18px rgba(19,25,26,0.2); border: 3px solid var(--orange); }
-.profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.profile-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
-.profile-tagline { font-size: 0.82rem; color: var(--ink-muted); font-weight: 400; line-height: 1.5; }
-@media (max-width: 520px) {
+.profile { display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
+.profile-photo {
+  width: 260px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(19,25,26,0.2);
+  border: 3px solid var(--orange);
+  transform: rotate(-1.5deg);
+}
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-text { padding-top: 0.5rem; }
+.profile-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+.profile-tagline { font-size: 0.88rem; color: var(--ink-muted); font-weight: 400; line-height: 1.6; }
+@media (max-width: 600px) {
   .profile { flex-direction: column; align-items: center; text-align: center; }
+  .profile-photo { width: 100%; max-width: 320px; transform: none; }
   .cta-row { justify-content: center; }
 }
 </style>
@@ -38,11 +48,11 @@ main { max-width: 680px; }
 <main>
   <div class="profile">
     <div class="profile-photo">
-      <img src="joana.jpeg" alt="Joana" style="width:100%;height:100%;object-fit:cover;">
+      <img src="joana.jpeg" alt="Joana with her animals">
     </div>
-    <div>
+    <div class="profile-text">
       <div class="profile-name">Hi, I'm Joana.</div>
-      <div class="profile-tagline">Food lover. Home cook. Reluctant diet researcher.<br>Not a nutritionist — just someone who figured some things out.</div>
+      <div class="profile-tagline">Food lover. Home cook. Reluctant diet researcher.<br>Not a nutritionist — just someone who figured some things out.<br><br>That's Luna and our cat photobombing. They approve this message.</div>
     </div>
   </div>
   <div class="article-body">
