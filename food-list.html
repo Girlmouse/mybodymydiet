@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #1a2238;
-  --navy-deep: #131a2c;
-  --yellow: #f0a500;
-  --yellow-bright: #ffc532;
+  --dark: #13191A;
+  --dark-deep: #0d1112;
+  --orange: #E2730D;
+  --gold: #D4A36B;
   --white: #ffffff;
-  --ink: #1a2238;
+  --ink: #13191A;
   --ink-muted: #5a6478;
   --green: #5a9e3a;
   --amber: #e8a020;
@@ -22,7 +22,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--white);
+  background: #fef6e8;
   font-family: 'Lato', sans-serif;
   color: var(--ink);
   min-height: 100vh;
@@ -30,7 +30,7 @@ body {
 
 /* ── HEADER ── */
 header {
-  background: var(--navy);
+  background: var(--dark);
   padding: 1.4rem 1.5rem 1.2rem;
   text-align: center;
   position: relative;
@@ -46,7 +46,7 @@ header {
   margin-bottom: 0.3rem;
 }
 
-.header-site em { color: var(--yellow-bright); font-style: italic; }
+.header-site em { color: rgba(19,25,26,0.55); font-style: italic; }
 
 header h1 {
   font-family: 'Playfair Display', serif;
@@ -65,7 +65,7 @@ header h1 {
 
 /* ── INSTRUCTION ── */
 .instruction {
-  background: var(--navy-deep);
+  background: var(--dark-deep);
   padding: 0.85rem 1.5rem;
   text-align: center;
 }
@@ -79,7 +79,7 @@ header h1 {
   margin: 0 auto;
 }
 
-.instruction p strong { color: var(--yellow-bright); font-weight: 700; }
+.instruction p strong { color: rgba(19,25,26,0.55); font-weight: 700; }
 
 /* ── MAIN ── */
 main {
@@ -187,7 +187,7 @@ main {
   line-height: 1.65;
 }
 
-.cumberto-tip strong { color: var(--yellow); font-weight: 700; }
+.cumberto-tip strong { color: var(--orange); font-weight: 700; }
 
 /* ── ACTIONS ── */
 .actions {
@@ -214,13 +214,13 @@ main {
 .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(0,0,0,0.2); }
 .btn:active { transform: translateY(0); }
 
-.btn-print { background: var(--navy); color: white; }
+.btn-print { background: var(--dark); color: white; }
 .btn-clear { background: transparent; color: var(--ink-muted); border: 2px solid rgba(26,34,56,0.18); box-shadow: none; }
-.btn-save  { background: var(--yellow); color: var(--navy); }
+.btn-save  { background: var(--orange); color: var(--dark); }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--navy-deep);
+  background: var(--dark-deep);
   padding: 1.5rem;
   text-align: center;
   margin-top: 2rem;
@@ -234,12 +234,12 @@ footer {
   margin-bottom: 0.3rem;
 }
 
-.footer-logo em { color: var(--yellow-bright); font-style: italic; }
+.footer-logo em { color: rgba(19,25,26,0.55); font-style: italic; }
 
 .footer-note {
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--yellow-bright);
+  color: rgba(19,25,26,0.55);
 }
 
 /* ── PRINT STYLES ── */
@@ -275,7 +275,7 @@ footer {
 <body>
 
 <header>
-  <a href="index.html" style="position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.6);font-family:Lato,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='#ffc532'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">← Back</a>
+  <a href="index.html" style="position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.6);font-family:Lato,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='#D4A36B'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">← Back</a>
   <div class="header-site">My Body <em>My Diet</em></div>
   <h1>My Food List</h1>
   <p class="header-sub">Your personal food rules — based on experience, not anyone else's plan.</p>
@@ -361,11 +361,11 @@ footer {
       <path d="M12 55 Q4 58 3 68" stroke="#5a9e3a" stroke-width="4" fill="none" stroke-linecap="round"/>
       <path d="M40 50 Q48 44 47 36" stroke="#5a9e3a" stroke-width="4" fill="none" stroke-linecap="round"/>
       <circle cx="47" cy="35" r="3.5" fill="#5a9e3a"/>
-      <rect x="-1" y="66" width="14" height="20" rx="2" fill="#ffffff" stroke="#1a2238" stroke-width="1.5"/>
-      <rect x="3" y="64" width="6" height="4" rx="1" fill="#f0a500"/>
-      <line x1="1" y1="73" x2="12" y2="73" stroke="#f0a500" stroke-width="1.3"/>
-      <line x1="1" y1="77" x2="12" y2="77" stroke="#f0a500" stroke-width="1.3"/>
-      <line x1="1" y1="81" x2="8" y2="81" stroke="#f0a500" stroke-width="1.3"/>
+      <rect x="-1" y="66" width="14" height="20" rx="2" fill="#ffffff" stroke="#13191A" stroke-width="1.5"/>
+      <rect x="3" y="64" width="6" height="4" rx="1" fill="#E2730D"/>
+      <line x1="1" y1="73" x2="12" y2="73" stroke="#E2730D" stroke-width="1.3"/>
+      <line x1="1" y1="77" x2="12" y2="77" stroke="#E2730D" stroke-width="1.3"/>
+      <line x1="1" y1="81" x2="8" y2="81" stroke="#E2730D" stroke-width="1.3"/>
     </svg>
     <div class="cumberto-tip">
       <strong>A tip from Cumberto:</strong> Don't overthink it. Start with what's obvious — the food that always makes you feel heavy, or the one you always feel good after. The list gets clearer over time. You don't need to fill every line today.
@@ -448,7 +448,7 @@ function showToast(msg) {
     t.id = 'toast';
     t.style.cssText = `
       position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      background: #131a2c; color: #ffc532; font-family: Lato, sans-serif;
+      background: #0d1112; color: #D4A36B; font-family: Lato, sans-serif;
       font-size: 0.85rem; font-weight: 700; padding: 0.7rem 1.4rem;
       border-radius: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3);
       opacity: 0; transition: opacity 0.25s; pointer-events: none; z-index: 999;
