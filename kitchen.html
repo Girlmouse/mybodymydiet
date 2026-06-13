@@ -1064,6 +1064,13 @@ body {
     <button class="section-action" onclick="openModal('modal-add-meal')">+ Add Meal</button>
   </div>
 
+  <div class="setup-banner" id="mealsBanner" style="background:var(--warm-white);border:1px solid var(--sand);color:var(--mid)">
+    <button class="setup-banner-close" onclick="dismissMealsBanner()" title="Dismiss" style="color:var(--muted)">✕</button>
+    <div class="setup-banner-text" style="color:var(--mid)">
+      <strong style="color:var(--terracotta)">These are starter suggestions only.</strong> The 25 meals below cover a range of eating styles — Everyday, Mediterranean, Vegetarian, Vegan, and Low-carb — as a starting point. Keep what's useful, remove anything that doesn't fit your diet, and add your own. All macros are approximations.
+    </div>
+  </div>
+
   <div class="search-bar">
     <input class="search-input" type="search" placeholder="Search meals..." oninput="filterMeals(this.value)" id="mealSearch">
   </div>
@@ -1287,7 +1294,7 @@ body {
     <div class="modal-handle"></div>
     <div class="modal-title" id="customizeTitle">Customize Meal</div>
     <div class="form-group">
-      <label class="form-label">Ingredients — tap to swap</label>
+      <label class="form-label">Ingredients — tap Remove to skip anything you don't want</label>
       <div id="customizeIngredients"></div>
     </div>
     <div id="customizeMacros" style="background:var(--cream);border-radius:var(--radius);padding:0.8rem 1rem;margin-bottom:1rem;">
@@ -1335,6 +1342,18 @@ body {
       </div>
     </div>
 
+    <div class="form-group">
+      <label class="form-label">Backup & Restore</label>
+      <div style="font-size:0.74rem;color:var(--muted);line-height:1.6;margin-bottom:0.7rem">
+        Export saves everything — pantry, meals, log, and settings — into a single file on your device. Use it to back up your data, move it to another browser, or restore after a reset. Import reads that file back in and replaces your current data.
+      </div>
+      <div style="display:flex;gap:0.5rem;">
+        <button class="btn-full secondary" style="flex:1" onclick="exportData()">⬇ Export My Data</button>
+        <button class="btn-full secondary" style="flex:1" onclick="document.getElementById('importFileInput').click()">⬆ Import Data</button>
+        <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importData(this)">
+      </div>
+    </div>
+
     <div class="modal-actions">
       <button class="btn-full secondary" onclick="resetAllData()">Reset My Data</button>
       <button class="btn-full primary" onclick="saveSettingsFromModal()">Save</button>
@@ -1366,6 +1385,7 @@ const DEFAULT_SETTINGS = {
   avoidList: [],
   pantryView: 'all',
   setupBannerDismissed: false,
+  mealsBannerDismissed: false,
 };
 
 // ═══════════════════════════════════════════════
@@ -1505,208 +1525,410 @@ const DEFAULT_PANTRY = [
 // complexity: 'quick' = no cook / 5 min, 'medium' = 15 min, 'cook' = actual cooking
 // ingredients: { name, amount, unit } — unit can be 'cup','oz','tbsp','tsp','g','piece','handful',''
 const DEFAULT_MEALS = [
+
+  // ── EVERYDAY / OMNIVORE ──
   {
-    id:'m1', emoji:'🥗', title:'Tuna Bowl',
-    complexity:'quick', prepTime:5, favorite:false,
-    desc:'Canned tuna over mixed greens with olives, cucumber, tomato, red onion, bell pepper, lemon-olive oil dressing.',
-    cal:520, protein:38, carbs:28, fat:22,
+    id:'m1', emoji:'🍗', title:'Chicken & Rice Bowl',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'A no-fuss everyday bowl. Seasoned chicken breast over white rice with a handful of greens and olive oil.',
+    cal:520, protein:42, carbs:44, fat:12,
     warn:'',
+    tags:['Everyday'],
+    ingredients:[
+      {name:'Chicken breast', amount:5, unit:'oz'},
+      {name:'White rice (cooked)', amount:1, unit:'cup'},
+      {name:'Mixed greens', amount:1, unit:'cup'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m2', emoji:'🍝', title:'Spaghetti Bolognese',
+    complexity:'medium', prepTime:30, favorite:false,
+    desc:'Ground beef in a simple tomato sauce over pasta. The kind of dinner that pleases everyone.',
+    cal:580, protein:34, carbs:58, fat:18,
+    warn:'',
+    tags:['Everyday'],
+    ingredients:[
+      {name:'Ground beef', amount:4, unit:'oz'},
+      {name:'Pasta', amount:2, unit:'oz'},
+      {name:'Tomato (crushed)', amount:0.5, unit:'cup'},
+      {name:'Onion', amount:0.25, unit:'cup'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Oregano', amount:0.5, unit:'tsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m3', emoji:'🥪', title:'Tuna Salad Sandwich',
+    complexity:'quick', prepTime:5, favorite:false,
+    desc:'Classic tuna salad on bread. Quick, filling, and easy to take anywhere.',
+    cal:380, protein:30, carbs:36, fat:10,
+    warn:'',
+    tags:['Everyday'],
     ingredients:[
       {name:'Canned tuna (in water)', amount:5, unit:'oz'},
-      {name:'Mixed greens', amount:2, unit:'cup'},
-      {name:'Olives', amount:8, unit:'piece'},
+      {name:'Bread', amount:2, unit:'piece'},
+      {name:'Celery', amount:2, unit:'tbsp'},
+      {name:'Mustard', amount:1, unit:'tsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m4', emoji:'🥓', title:'Bacon & Egg Breakfast',
+    complexity:'quick', prepTime:10, favorite:false,
+    desc:'Bacon and eggs — the breakfast that never gets old. Add tomato for a little freshness.',
+    cal:420, protein:26, carbs:4, fat:32,
+    warn:'',
+    tags:['Everyday'],
+    ingredients:[
+      {name:'Bacon', amount:3, unit:'piece'},
+      {name:'Eggs', amount:2, unit:'piece'},
+      {name:'Tomato', amount:0.5, unit:'cup'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m5', emoji:'🌯', title:'Turkey & Avocado Wrap',
+    complexity:'quick', prepTime:5, favorite:false,
+    desc:'Turkey and avocado in a tortilla. Simple, satisfying, and works for lunch or dinner.',
+    cal:460, protein:32, carbs:38, fat:14,
+    warn:'',
+    tags:['Everyday'],
+    ingredients:[
+      {name:'Turkey breast', amount:4, unit:'oz'},
+      {name:'Tortillas', amount:1, unit:'piece'},
+      {name:'Avocado', amount:0.5, unit:'piece'},
+      {name:'Romaine lettuce', amount:1, unit:'cup'},
+      {name:'Tomato', amount:0.25, unit:'cup'},
+    ]
+  },
+
+  // ── MEDITERRANEAN ──
+  {
+    id:'m6', emoji:'🐟', title:'Salmon & Greek Salad',
+    complexity:'medium', prepTime:20, favorite:false,
+    desc:'Pan-seared salmon over a classic Greek salad with cucumber, tomato, olives, and lemon-olive oil.',
+    cal:480, protein:38, carbs:14, fat:28,
+    warn:'',
+    tags:['Mediterranean'],
+    ingredients:[
+      {name:'Fresh salmon', amount:5, unit:'oz'},
       {name:'Cucumber', amount:0.5, unit:'cup'},
       {name:'Tomato', amount:0.5, unit:'cup'},
-      {name:'Red onion', amount:2, unit:'tbsp'},
-      {name:'Bell pepper', amount:0.25, unit:'cup'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
+      {name:'Olives', amount:10, unit:'piece'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Lemon', amount:0.5, unit:'piece'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m7', emoji:'🫘', title:'Lentil Soup',
+    complexity:'medium', prepTime:35, favorite:false,
+    desc:'A hearty, warming lentil soup with carrot, celery, and cumin. One of the best cheap meals there is.',
+    cal:320, protein:18, carbs:48, fat:6,
+    warn:'',
+    tags:['Mediterranean'],
+    ingredients:[
+      {name:'Green lentils', amount:0.5, unit:'cup'},
+      {name:'Carrot', amount:1, unit:'piece'},
+      {name:'Celery', amount:2, unit:'piece'},
+      {name:'Vegetable broth', amount:2, unit:'cup'},
+      {name:'Cumin', amount:1, unit:'tsp'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m8', emoji:'🥘', title:'Chickpea & Spinach Stew',
+    complexity:'medium', prepTime:25, favorite:false,
+    desc:'Chickpeas simmered with tomato and spinach in a smoky paprika broth. Good over rice or on its own.',
+    cal:340, protein:16, carbs:44, fat:8,
+    warn:'',
+    tags:['Mediterranean'],
+    ingredients:[
+      {name:'Chickpeas (canned)', amount:1, unit:'cup'},
+      {name:'Tomato', amount:1, unit:'cup'},
+      {name:'Spinach', amount:2, unit:'cup'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Smoked paprika', amount:1, unit:'tsp'},
+      {name:'Cumin', amount:0.5, unit:'tsp'},
+    ]
+  },
+  {
+    id:'m9', emoji:'🌾', title:'Farro & Roasted Veg Bowl',
+    complexity:'medium', prepTime:30, favorite:false,
+    desc:'Nutty farro with roasted zucchini and bell pepper, finished with fresh basil and olive oil.',
+    cal:420, protein:14, carbs:62, fat:12,
+    warn:'',
+    tags:['Mediterranean'],
+    ingredients:[
+      {name:'Farro', amount:0.5, unit:'cup'},
+      {name:'Zucchini', amount:1, unit:'cup'},
+      {name:'Bell pepper', amount:0.5, unit:'cup'},
+      {name:'Olive oil', amount:1.5, unit:'tbsp'},
+      {name:'Basil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m10', emoji:'🥗', title:'Tuna & White Bean Salad',
+    complexity:'quick', prepTime:5, favorite:false,
+    desc:'Tuna and cannellini beans with capers and celery in a lemon-olive oil dressing. No cooking needed.',
+    cal:380, protein:34, carbs:28, fat:10,
+    warn:'',
+    tags:['Mediterranean'],
+    ingredients:[
+      {name:'Canned tuna (in water)', amount:5, unit:'oz'},
+      {name:'Cannellini Beans', amount:0.5, unit:'cup'},
+      {name:'Celery', amount:2, unit:'tbsp'},
+      {name:'Capers', amount:1, unit:'tbsp'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Lemon', amount:0.5, unit:'piece'},
+    ]
+  },
+
+  // ── VEGETARIAN ──
+  {
+    id:'m11', emoji:'🥦', title:'Veggie Stir-Fry with Rice',
+    complexity:'quick', prepTime:20, favorite:false,
+    desc:'Broccoli, bell pepper, and carrot stir-fried in soy sauce and served over brown rice.',
+    cal:380, protein:10, carbs:62, fat:8,
+    warn:'',
+    tags:['Vegetarian'],
+    ingredients:[
+      {name:'Brown rice (cooked)', amount:1, unit:'cup'},
+      {name:'Broccoli', amount:1, unit:'cup'},
+      {name:'Bell pepper', amount:0.5, unit:'cup'},
+      {name:'Carrot', amount:0.5, unit:'cup'},
+      {name:'Soy sauce', amount:2, unit:'tbsp'},
       {name:'Olive oil', amount:1, unit:'tbsp'},
     ]
   },
   {
-    id:'m2', emoji:'🍲', title:'Smoked Salmon Quinoa Bowl',
-    complexity:'medium', prepTime:15, favorite:false,
-    desc:'Warm quinoa base with smoked salmon, sliced avocado, cucumber, cherry tomatoes, spinach, olive oil and lemon.',
-    cal:560, protein:37, carbs:42, fat:24,
-    warn:'Limit to 2–3x/week (high sodium)',
+    id:'m12', emoji:'🍅', title:'Caprese Quinoa Bowl',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Warm quinoa with fresh tomato, mozzarella, and basil drizzled with olive oil. Simple and satisfying.',
+    cal:440, protein:20, carbs:48, fat:16,
+    warn:'',
+    tags:['Vegetarian'],
     ingredients:[
       {name:'Quinoa (cooked)', amount:1, unit:'cup'},
-      {name:'Smoked salmon', amount:3, unit:'oz'},
-      {name:'Avocado', amount:0.5, unit:'piece'},
-      {name:'Cucumber', amount:0.5, unit:'cup'},
-      {name:'Cherry tomatoes', amount:0.5, unit:'cup'},
-      {name:'Spinach', amount:1, unit:'cup'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
+      {name:'Tomato', amount:1, unit:'cup'},
+      {name:'Mozzarella', amount:2, unit:'oz'},
+      {name:'Basil', amount:1, unit:'tbsp'},
       {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
     ]
   },
   {
-    id:'m3', emoji:'🫘', title:'Red Lentil & Spinach Stew',
-    complexity:'cook', prepTime:30, favorite:false,
-    desc:'Red lentils simmered with diced tomato, cumin, turmeric, onion, finished with fresh spinach and lemon.',
-    cal:490, protein:28, carbs:62, fat:10,
+    id:'m13', emoji:'🍛', title:'Red Lentil Dal',
+    complexity:'medium', prepTime:25, favorite:false,
+    desc:'Red lentils cooked down with tomato, spinach, cumin, and turmeric. Serve over rice or with bread.',
+    cal:340, protein:18, carbs:52, fat:6,
     warn:'',
+    tags:['Vegetarian'],
     ingredients:[
-      {name:'Red lentils (dry)', amount:0.5, unit:'cup'},
-      {name:'Diced tomato', amount:1, unit:'cup'},
-      {name:'Spinach', amount:2, unit:'cup'},
-      {name:'Onion (chopped)', amount:0.25, unit:'cup'},
+      {name:'Red Lentils', amount:0.5, unit:'cup'},
+      {name:'Spinach', amount:1, unit:'cup'},
+      {name:'Tomato', amount:0.5, unit:'cup'},
       {name:'Cumin', amount:1, unit:'tsp'},
       {name:'Turmeric', amount:0.5, unit:'tsp'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
       {name:'Olive oil', amount:1, unit:'tbsp'},
-      {name:'Water or broth', amount:2, unit:'cup'},
     ]
   },
   {
-    id:'m4', emoji:'🐟', title:'Tuna White Bean Salad',
-    complexity:'quick', prepTime:5, favorite:false,
-    desc:'Canned tuna with white beans, chopped tomato, celery, fresh basil, olive oil. Massive protein, zero cooking.',
-    cal:510, protein:40, carbs:35, fat:14,
+    id:'m14', emoji:'🌮', title:'Black Bean Tacos',
+    complexity:'quick', prepTime:10, favorite:false,
+    desc:'Black beans with avocado and tomato in warm tortillas. Easy weeknight dinner.',
+    cal:420, protein:16, carbs:58, fat:14,
     warn:'',
+    tags:['Vegetarian'],
     ingredients:[
-      {name:'Canned tuna (in water)', amount:5, unit:'oz'},
-      {name:'White beans (canned, drained)', amount:0.5, unit:'cup'},
-      {name:'Tomato (chopped)', amount:0.5, unit:'cup'},
-      {name:'Celery (chopped)', amount:2, unit:'tbsp'},
-      {name:'Fresh basil', amount:1, unit:'handful'},
-      {name:'Olive oil', amount:1, unit:'tbsp'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m5', emoji:'🥙', title:'Smoked Salmon Lettuce Wraps',
-    complexity:'quick', prepTime:5, favorite:false,
-    desc:'Large romaine leaves filled with smoked salmon, avocado, cucumber, and fresh dill. Light and satisfying.',
-    cal:480, protein:32, carbs:12, fat:28,
-    warn:'Limit to 2–3x/week (high sodium)',
-    ingredients:[
-      {name:'Smoked salmon', amount:3, unit:'oz'},
-      {name:'Romaine leaves (large)', amount:4, unit:'piece'},
+      {name:'Black Beans', amount:0.75, unit:'cup'},
+      {name:'Tortillas', amount:2, unit:'piece'},
       {name:'Avocado', amount:0.5, unit:'piece'},
-      {name:'Cucumber (sliced)', amount:0.5, unit:'cup'},
-      {name:'Fresh dill', amount:1, unit:'tbsp'},
-      {name:'Olive oil', amount:1, unit:'tsp'},
-      {name:'Lemon juice', amount:1, unit:'tsp'},
+      {name:'Tomato', amount:0.5, unit:'cup'},
+      {name:'Romaine Lettuce', amount:1, unit:'cup'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
     ]
   },
   {
-    id:'m6', emoji:'🫘', title:'Chickpea Shakshuka (egg-free)',
-    complexity:'cook', prepTime:25, favorite:false,
-    desc:'Chickpeas braised in spiced tomato sauce with bell pepper, cumin, smoked paprika, topped with fresh herbs.',
-    cal:490, protein:22, carbs:60, fat:14,
-    warn:'',
-    ingredients:[
-      {name:'Chickpeas (canned, drained)', amount:1, unit:'cup'},
-      {name:'Crushed tomatoes', amount:1, unit:'cup'},
-      {name:'Bell pepper (chopped)', amount:0.5, unit:'cup'},
-      {name:'Cumin', amount:1, unit:'tsp'},
-      {name:'Smoked paprika', amount:0.5, unit:'tsp'},
-      {name:'Fresh basil', amount:1, unit:'handful'},
-      {name:'Olive oil', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m7', emoji:'🌾', title:'Tuna Over Farro',
-    complexity:'medium', prepTime:20, favorite:false,
-    desc:'Canned tuna over warm farro with wilted spinach, lemon zest, capers, and olive oil.',
-    cal:540, protein:36, carbs:50, fat:16,
-    warn:'',
-    ingredients:[
-      {name:'Farro (cooked)', amount:1, unit:'cup'},
-      {name:'Canned tuna (in water)', amount:5, unit:'oz'},
-      {name:'Spinach', amount:1, unit:'cup'},
-      {name:'Capers', amount:1, unit:'tbsp'},
-      {name:'Lemon zest + juice', amount:1, unit:'tbsp'},
-      {name:'Olive oil', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m8', emoji:'🥗', title:'Lentil Tabbouleh',
-    complexity:'medium', prepTime:20, favorite:false,
-    desc:'Green lentils with chopped tomato, cucumber, onion, loads of fresh parsley, lemon juice, olive oil. Gets better overnight.',
-    cal:470, protein:26, carbs:54, fat:14,
-    warn:'',
-    ingredients:[
-      {name:'Green lentils (cooked)', amount:1, unit:'cup'},
-      {name:'Tomato (diced)', amount:0.5, unit:'cup'},
-      {name:'Cucumber (diced)', amount:0.5, unit:'cup'},
-      {name:'Red onion (minced)', amount:2, unit:'tbsp'},
-      {name:'Fresh parsley (chopped)', amount:0.5, unit:'cup'},
-      {name:'Lemon juice', amount:2, unit:'tbsp'},
-      {name:'Olive oil', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m9', emoji:'🍲', title:'White Bean & Kale Soup',
-    complexity:'cook', prepTime:30, favorite:false,
-    desc:'Cannellini beans and kale in a light veggie broth with tomato, celery, herbs, and olive oil finish.',
-    cal:460, protein:22, carbs:52, fat:12,
-    warn:'',
-    ingredients:[
-      {name:'Cannellini beans (canned, drained)', amount:1, unit:'cup'},
-      {name:'Kale (chopped)', amount:2, unit:'cup'},
-      {name:'Diced tomato', amount:0.5, unit:'cup'},
-      {name:'Celery (sliced)', amount:2, unit:'tbsp'},
-      {name:'Vegetable broth (low sodium)', amount:2, unit:'cup'},
-      {name:'Fresh basil', amount:1, unit:'handful'},
-      {name:'Olive oil', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m10', emoji:'🍠', title:'Smoked Salmon Power Bowl',
-    complexity:'medium', prepTime:20, favorite:false,
-    desc:'Quinoa with roasted sweet potato, kale, avocado, pumpkin seeds, and tahini dressing. The most filling meal in the library.',
-    cal:610, protein:34, carbs:56, fat:28,
-    warn:'Limit to 2–3x/week (high sodium)',
-    ingredients:[
-      {name:'Quinoa (cooked)', amount:0.75, unit:'cup'},
-      {name:'Smoked salmon', amount:3, unit:'oz'},
-      {name:'Sweet potato (roasted, cubed)', amount:0.5, unit:'cup'},
-      {name:'Kale (massaged)', amount:1, unit:'cup'},
-      {name:'Avocado', amount:0.5, unit:'piece'},
-      {name:'Pumpkin seeds', amount:1, unit:'tbsp'},
-      {name:'Tahini', amount:1, unit:'tbsp'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
-    ]
-  },
-  {
-    id:'m11', emoji:'🥗', title:'Avocado Tuna Smash Bowl',
-    complexity:'quick', prepTime:5, favorite:false,
-    desc:'Tuna mashed with avocado, lemon, celery, cucumber, over mixed greens. Creamy and rich without any dairy.',
-    cal:500, protein:36, carbs:18, fat:28,
-    warn:'',
-    ingredients:[
-      {name:'Canned tuna (in water)', amount:5, unit:'oz'},
-      {name:'Avocado', amount:0.5, unit:'piece'},
-      {name:'Celery (diced)', amount:2, unit:'tbsp'},
-      {name:'Cucumber (diced)', amount:0.25, unit:'cup'},
-      {name:'Mixed greens', amount:2, unit:'cup'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
-      {name:'Olive oil', amount:1, unit:'tsp'},
-    ]
-  },
-  {
-    id:'m12', emoji:'🥗', title:'Big Mediterranean Salad',
+    id:'m15', emoji:'🍳', title:'Egg & Avocado Toast',
     complexity:'quick', prepTime:8, favorite:false,
-    desc:'Romaine, chickpeas, tuna, cucumber, tomato, olives, red onion, bell pepper, lemon-olive oil dressing.',
-    cal:530, protein:35, carbs:38, fat:20,
+    desc:'Fried or poached eggs on toast with smashed avocado. The reliable one.',
+    cal:380, protein:18, carbs:30, fat:20,
     warn:'',
+    tags:['Vegetarian'],
     ingredients:[
-      {name:'Romaine (chopped)', amount:3, unit:'cup'},
-      {name:'Chickpeas (canned, drained)', amount:0.5, unit:'cup'},
-      {name:'Canned tuna (in water)', amount:3, unit:'oz'},
-      {name:'Cucumber (sliced)', amount:0.5, unit:'cup'},
-      {name:'Tomato (chopped)', amount:0.5, unit:'cup'},
-      {name:'Olives', amount:8, unit:'piece'},
-      {name:'Red onion', amount:2, unit:'tbsp'},
-      {name:'Bell pepper', amount:0.25, unit:'cup'},
-      {name:'Lemon juice', amount:1, unit:'tbsp'},
+      {name:'Eggs', amount:2, unit:'piece'},
+      {name:'Bread', amount:2, unit:'piece'},
+      {name:'Avocado', amount:0.5, unit:'piece'},
+      {name:'Tomato', amount:0.25, unit:'cup'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+
+  // ── VEGAN ──
+  {
+    id:'m16', emoji:'🥣', title:'Buddha Bowl',
+    complexity:'medium', prepTime:20, favorite:false,
+    desc:'Quinoa with chickpeas, avocado, spinach, and a tahini drizzle. Filling and colorful.',
+    cal:480, protein:20, carbs:54, fat:20,
+    warn:'',
+    tags:['Vegan'],
+    ingredients:[
+      {name:'Quinoa (cooked)', amount:1, unit:'cup'},
+      {name:'Chickpeas (canned)', amount:0.5, unit:'cup'},
+      {name:'Avocado', amount:0.5, unit:'piece'},
+      {name:'Spinach', amount:1, unit:'cup'},
+      {name:'Tahini', amount:1, unit:'tbsp'},
+      {name:'Lemon', amount:0.5, unit:'piece'},
+    ]
+  },
+  {
+    id:'m17', emoji:'🍳', title:'Tofu Scramble',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Crumbled firm tofu scrambled with bell pepper, spinach, and turmeric. Protein-packed breakfast.',
+    cal:280, protein:20, carbs:10, fat:16,
+    warn:'',
+    tags:['Vegan'],
+    ingredients:[
+      {name:'Tofu', amount:5, unit:'oz'},
+      {name:'Bell pepper', amount:0.5, unit:'cup'},
+      {name:'Spinach', amount:1, unit:'cup'},
+      {name:'Turmeric', amount:0.5, unit:'tsp'},
       {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m18', emoji:'🍲', title:'Red Lentil & Veg Soup',
+    complexity:'medium', prepTime:30, favorite:false,
+    desc:'A simple, warming soup with red lentils, carrot, celery, and cumin. Vegan comfort food.',
+    cal:300, protein:16, carbs:46, fat:5,
+    warn:'',
+    tags:['Vegan'],
+    ingredients:[
+      {name:'Red Lentils', amount:0.5, unit:'cup'},
+      {name:'Carrot', amount:1, unit:'piece'},
+      {name:'Celery', amount:2, unit:'piece'},
+      {name:'Vegetable broth', amount:2, unit:'cup'},
+      {name:'Cumin', amount:1, unit:'tsp'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+    ]
+  },
+  {
+    id:'m19', emoji:'🥭', title:'Mango & Black Bean Bowl',
+    complexity:'quick', prepTime:10, favorite:false,
+    desc:'Black beans and fresh mango over romaine with corn and lime. Bright, no-cook, filling.',
+    cal:380, protein:14, carbs:68, fat:4,
+    warn:'',
+    tags:['Vegan'],
+    ingredients:[
+      {name:'Black Beans', amount:0.75, unit:'cup'},
+      {name:'Mango', amount:0.5, unit:'cup'},
+      {name:'Corn', amount:0.25, unit:'cup'},
+      {name:'Romaine Lettuce', amount:2, unit:'cup'},
+      {name:'Lemon', amount:0.5, unit:'piece'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m20', emoji:'🍜', title:'Peanut Noodles',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Pasta tossed in a peanut butter and soy sauce dressing with shredded carrot and green beans.',
+    cal:480, protein:18, carbs:60, fat:18,
+    warn:'',
+    tags:['Vegan'],
+    ingredients:[
+      {name:'Pasta', amount:2, unit:'oz'},
+      {name:'Peanut Butter', amount:2, unit:'tbsp'},
+      {name:'Soy sauce', amount:1, unit:'tbsp'},
+      {name:'Carrot', amount:0.5, unit:'cup'},
+      {name:'Green Beans', amount:0.5, unit:'cup'},
+    ]
+  },
+
+  // ── CARNIVORE / LOW-CARB ──
+  {
+    id:'m21', emoji:'🥩', title:'Steak & Greens',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Pan-seared beef steak with a handful of mixed greens and olive oil. High protein, near-zero carb.',
+    cal:520, protein:50, carbs:4, fat:32,
+    warn:'',
+    tags:['Low-carb'],
+    ingredients:[
+      {name:'Beef steak', amount:6, unit:'oz'},
+      {name:'Mixed Greens', amount:2, unit:'cup'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m22', emoji:'🐟', title:'Bacon & Salmon Plate',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Crispy bacon alongside pan-seared salmon and sliced avocado. Fatty, filling, carnivore-friendly.',
+    cal:580, protein:46, carbs:4, fat:40,
+    warn:'',
+    tags:['Low-carb'],
+    ingredients:[
+      {name:'Bacon', amount:3, unit:'piece'},
+      {name:'Fresh salmon', amount:4, unit:'oz'},
+      {name:'Avocado', amount:0.5, unit:'piece'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m23', emoji:'🥩', title:'Ground Beef & Cauliflower',
+    complexity:'quick', prepTime:20, favorite:false,
+    desc:'Seasoned ground beef over steamed cauliflower rice. Keeps the macros clean without the actual rice.',
+    cal:440, protein:40, carbs:10, fat:26,
+    warn:'',
+    tags:['Low-carb'],
+    ingredients:[
+      {name:'Ground beef', amount:5, unit:'oz'},
+      {name:'Cauliflower', amount:2, unit:'cup'},
+      {name:'Olive oil', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m24', emoji:'🍖', title:'Pork Chop & Asparagus',
+    complexity:'quick', prepTime:20, favorite:false,
+    desc:'Pan-seared pork chop with asparagus cooked in butter. Simple and satisfying.',
+    cal:420, protein:38, carbs:6, fat:26,
+    warn:'',
+    tags:['Low-carb'],
+    ingredients:[
+      {name:'Pork chops', amount:5, unit:'oz'},
+      {name:'Asparagus', amount:1, unit:'cup'},
+      {name:'Butter', amount:1, unit:'tbsp'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
+    ]
+  },
+  {
+    id:'m25', emoji:'🥬', title:'Turkey Lettuce Cups',
+    complexity:'quick', prepTime:15, favorite:false,
+    desc:'Seasoned ground turkey served in romaine leaves with avocado. Low-carb, high protein, no fuss.',
+    cal:320, protein:34, carbs:6, fat:16,
+    warn:'',
+    tags:['Low-carb'],
+    ingredients:[
+      {name:'Ground turkey', amount:5, unit:'oz'},
+      {name:'Romaine Lettuce', amount:4, unit:'piece'},
+      {name:'Avocado', amount:0.5, unit:'piece'},
+      {name:'Sea salt', amount:1, unit:'pinch'},
+      {name:'Black pepper', amount:1, unit:'pinch'},
     ]
   },
 ];
-
 // ═══════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════
@@ -1759,9 +1981,13 @@ function loadAll() {
   renderAll();
   renderAvoidLists();
 
-  // Hide the setup banner if it's already been dismissed
+  // Hide banners if already dismissed
   if (state.settings.setupBannerDismissed) {
     const banner = document.getElementById('setupBanner');
+    if (banner) banner.remove();
+  }
+  if (state.settings.mealsBannerDismissed) {
+    const banner = document.getElementById('mealsBanner');
     if (banner) banner.remove();
   }
 }
@@ -1784,6 +2010,13 @@ function dismissSetupBanner() {
   const banner = document.getElementById('setupBanner');
   if (banner) banner.remove();
   setPantryView('mine');
+}
+
+function dismissMealsBanner() {
+  state.settings.mealsBannerDismissed = true;
+  saveSettings();
+  const banner = document.getElementById('mealsBanner');
+  if (banner) banner.remove();
 }
 
 function savePantry() { lsSet(STORAGE_KEYS.pantry, state.pantry); }
@@ -2695,6 +2928,66 @@ function saveSettingsFromModal() {
   renderStats();
   closeModal('modal-settings');
   showToast('Settings saved');
+}
+
+function exportData() {
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    pantry: state.pantry,
+    meals: state.meals,
+    log: state.log,
+    settings: state.settings,
+  };
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob(['\ufeff' + json], { type: 'application/json;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'my-kitchen-backup.json';
+  a.click();
+  showToast('Data exported — save that file somewhere safe!');
+}
+
+function importData(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const raw = e.target.result.replace(/^\ufeff/, ''); // strip BOM if present
+      const data = JSON.parse(raw);
+
+      if (!data.pantry || !data.meals || !data.settings) {
+        showToast('That file doesn\'t look right — not a My Kitchen backup');
+        return;
+      }
+
+      const confirmed = confirm(
+        'This will replace all your current data — pantry, meals, log, and settings — with what\'s in this file.\n\nThis can\'t be undone. Continue?'
+      );
+      if (!confirmed) return;
+
+      state.pantry = ensurePantryStatus(data.pantry);
+      state.meals = data.meals;
+      state.log = data.log || {};
+      state.settings = Object.assign({}, DEFAULT_SETTINGS, data.settings);
+
+      lsSet(STORAGE_KEYS.pantry, state.pantry);
+      lsSet(STORAGE_KEYS.meals, state.meals);
+      lsSet(STORAGE_KEYS.log, state.log);
+      lsSet(STORAGE_KEYS.settings, state.settings);
+
+      closeModal('modal-settings');
+      renderAll();
+      renderAvoidLists();
+      showToast('Data restored from backup');
+    } catch (err) {
+      showToast('Couldn\'t read that file — is it a My Kitchen backup?');
+    } finally {
+      input.value = '';
+    }
+  };
+  reader.readAsText(file);
 }
 
 function resetAllData() {
