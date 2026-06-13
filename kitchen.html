@@ -340,44 +340,119 @@ body {
 }
 
 /* ── MEALS ── */
-.meal-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.85rem 1rem 0.7rem;
-  border-bottom: 1px solid var(--sand-light);
+.meal-card {
+  background: var(--deep);
+  border-radius: var(--radius);
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(19,25,26,0.12);
 }
 
-.meal-emoji { font-size: 1.2rem; }
+.meal-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem 1.1rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
 .meal-info { flex: 1; min-width: 0; }
-.meal-cat { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-.meal-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--deep); font-weight: 600; }
+.meal-cat {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 0.3rem;
+  color: var(--olive-light);
+}
 
-.meal-macros { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; flex-shrink: 0; }
-.macro-cal { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--terracotta); font-weight: 600; }
-.macro-cal small { font-size: 0.58rem; font-family: 'Lato', sans-serif; color: var(--muted); font-weight: 300; }
+.meal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.meal-macros {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.macro-cal {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--terra-light);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.macro-cal small {
+  font-size: 0.6rem;
+  font-family: 'Lato', sans-serif;
+  color: var(--sand-light);
+  font-weight: 400;
+}
+
 .macro-pills { display: flex; gap: 0.25rem; }
-.mp { font-size: 0.54rem; padding: 0.12rem 0.35rem; border-radius: 1rem; }
-.mp-p { background: var(--olive-pale); color: var(--olive); }
-.mp-c { background: #fdf5e6; color: #9a7a30; }
-.mp-f { background: var(--terra-pale); color: var(--terracotta); }
 
-.meal-body { padding: 0.75rem 1rem 0.85rem; }
-.meal-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.6rem; }
+.mp {
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.2rem 0.42rem;
+  border-radius: 1rem;
+}
+
+.mp-p { background: rgba(212,163,107,0.2); color: var(--olive-light); border: 1px solid rgba(212,163,107,0.3); }
+.mp-c { background: rgba(240,126,20,0.15); color: #f5a45a; border: 1px solid rgba(240,126,20,0.25); }
+.mp-f { background: rgba(226,115,13,0.2); color: var(--terra-light); border: 1px solid rgba(226,115,13,0.3); }
+
+.meal-body { padding: 0.8rem 1.1rem 1rem; }
+
+.meal-desc {
+  font-size: 0.78rem;
+  color: var(--sand-light);
+  line-height: 1.65;
+  margin-bottom: 0.7rem;
+}
+
 .meal-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; margin-bottom: 0.7rem; }
-.mtag { font-size: 0.58rem; padding: 0.18rem 0.45rem; border-radius: 2rem; background: var(--sand-light); color: var(--mid); }
-.mtag.warn { background: #fff3e0; color: #9a7a30; }
+.mtag { font-size: 0.58rem; padding: 0.18rem 0.45rem; border-radius: 2rem; background: rgba(255,255,255,0.07); color: var(--sand-light); border: 1px solid rgba(255,255,255,0.1); }
+.mtag.warn { background: rgba(154,122,48,0.2); color: #f5c97a; border: 1px solid rgba(154,122,48,0.3); }
 
-.meal-actions { display: flex; gap: 0.5rem; }
+.meal-ing-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.meal-ing-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  padding: 0.22rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: var(--sand-light);
+}
+
+.meal-ing-row span:last-child { color: var(--olive-light); font-weight: 700; }
+
+.meal-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+
 .btn-primary {
   flex: 1;
-  padding: 0.6rem 1rem;
-  background: var(--deep);
-  color: var(--cream);
+  padding: 0.65rem 1rem;
+  background: var(--terracotta);
+  color: white;
   border: none;
   border-radius: 2rem;
   font-size: 0.68rem;
+  font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
@@ -385,20 +460,37 @@ body {
   transition: background 0.15s;
 }
 
-.btn-primary:active { background: var(--mid); }
+.btn-primary:active { background: var(--terra-light); }
 
 .btn-secondary {
-  padding: 0.6rem 1rem;
-  background: none;
-  color: var(--mid);
-  border: 1.5px solid var(--sand);
+  padding: 0.65rem 1rem;
+  background: rgba(255,255,255,0.07);
+  color: var(--sand-light);
+  border: 1.5px solid rgba(255,255,255,0.15);
   border-radius: 2rem;
   font-size: 0.68rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
+  transition: background 0.15s;
 }
+
+.btn-secondary:active { background: rgba(255,255,255,0.12); }
+
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  color: var(--muted);
+  font-size: 1rem;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.fav-btn.active { color: var(--terracotta); }
 
 /* ── LOG ── */
 .day-summary {
@@ -1941,7 +2033,6 @@ let state = {
   customizeMeal: null,
 };
 
-let currentMealFilter = 'all';
 let pantrySearchVal = '';
 let pantryFilterVal = 'all';
 
@@ -1969,7 +2060,10 @@ function loadAll() {
   const settings = lsGet(STORAGE_KEYS.settings);
 
   state.pantry = ensurePantryStatus(pantry && pantry.length ? pantry : DEFAULT_PANTRY);
-  state.meals = meals && meals.length ? meals : DEFAULT_MEALS;
+  // Migrate old meals that pre-date the diet-tag system (no `tags` field)
+  const hasOldMeals = meals && meals.length && !meals.some(m => m.tags && m.tags.length);
+  state.meals = (meals && meals.length && !hasOldMeals) ? meals : DEFAULT_MEALS;
+  if (hasOldMeals) lsSet(STORAGE_KEYS.meals, state.meals);
   state.log = log || {};
   state.settings = settings ? Object.assign({}, DEFAULT_SETTINGS, settings) : JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
 
@@ -2219,49 +2313,52 @@ function renderShoppingList() {
     </div>`;
 }
 
-function renderMeals(filter = '', complexity = 'all', favOnly = false) {
-  const list = document.getElementById('mealsList');
+let currentMealDietFilter = 'all';
+let currentMealSearch = '';
 
+function renderMeals(filter, dietTag) {
+  if (filter !== undefined) currentMealSearch = filter;
+  if (dietTag !== undefined) currentMealDietFilter = dietTag;
+
+  const list = document.getElementById('mealsList');
   const fp = document.getElementById('mealFilters');
-  fp.innerHTML = [
-    {key:'all', label:'All'},
-    {key:'quick', label:'⚡ Quick (≤5 min)'},
-    {key:'medium', label:'⏱ Medium (≤15 min)'},
-    {key:'cook', label:'🍳 Cook'},
-    {key:'fav', label:'❤️ Favorites'},
-  ].map(f => `<button class="filter-pill ${(f.key === 'fav' ? favOnly : complexity === f.key && !favOnly) ? 'active' : ''}" onclick="${f.key === 'fav' ? `renderMeals('','all',true)` : `renderMeals('','${f.key}',false)`}">${f.label}</button>`).join('');
+
+  // Build diet-tag filter pills from actual tags in data
+  const allTags = ['all', ...new Set(state.meals.flatMap(m => m.tags || []))];
+  fp.innerHTML = allTags.map(t =>
+    `<button class="filter-pill ${currentMealDietFilter === t ? 'active' : ''}" onclick="renderMeals(undefined,'${t}')">${t === 'all' ? 'All' : t}</button>`
+  ).join('') +
+  `<button class="filter-pill ${currentMealDietFilter === 'fav' ? 'active' : ''}" onclick="renderMeals(undefined,'fav')">❤ Favorites</button>`;
 
   const filtered = state.meals.filter(m => {
-    const tags = m.ingredients ? m.ingredients.map(i => i.name.toLowerCase()) : (m.tags || []);
-    const matchSearch = !filter || m.title.toLowerCase().includes(filter.toLowerCase()) ||
-      tags.some(t => t.includes(filter.toLowerCase()));
-    const matchComplexity = complexity === 'all' || m.complexity === complexity;
-    const matchFav = !favOnly || m.favorite;
-    return matchSearch && matchComplexity && matchFav;
+    const matchSearch = !currentMealSearch || m.title.toLowerCase().includes(currentMealSearch.toLowerCase());
+    const matchTag = currentMealDietFilter === 'all'
+      || (currentMealDietFilter === 'fav' && m.favorite)
+      || (m.tags || []).includes(currentMealDietFilter);
+    return matchSearch && matchTag;
   });
 
   if (!filtered.length) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">${favOnly ? '❤️' : '🍽'}</div><div class="empty-text">${favOnly ? 'No favorites yet.<br>Tap ❤ on any meal to save it.' : 'No meals found.'}</div></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">🍽</div><div class="empty-text">${currentMealDietFilter === 'fav' ? 'No favorites yet — tap ♡ on any meal to save it.' : 'No meals found.'}</div></div>`;
     return;
   }
 
-  const complexityLabel = {quick:'⚡ Quick', medium:'⏱ Medium', cook:'🍳 Requires cooking'};
-  const complexityColor = {quick:'var(--olive)', medium:'#9a7a30', cook:'var(--terracotta)'};
+  const prepLabel = { quick:'No cook', medium:'Quick prep', cook:'Requires cooking' };
 
   list.innerHTML = filtered.map(m => {
     const ingList = m.ingredients || [];
+    const dietTag = (m.tags || [])[0] || '';
     return `
-    <div class="card" style="margin-bottom:0.8rem">
+    <div class="meal-card">
       <div class="meal-card-header">
-        <div class="meal-emoji">${m.emoji || '🍽'}</div>
         <div class="meal-info">
-          <div class="meal-cat" style="color:${complexityColor[m.complexity] || 'var(--muted)'}">
-            ${complexityLabel[m.complexity] || ''} · ${m.prepTime} min
-          </div>
+          <div class="meal-cat">${dietTag ? dietTag + ' · ' : ''}${prepLabel[m.complexity] || ''} · ${m.prepTime} min</div>
           <div class="meal-title">${m.title}</div>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;flex-shrink:0">
-          <button onclick="toggleFavorite('${m.id}')" style="background:none;border:none;cursor:pointer;font-size:1.1rem;line-height:1">${m.favorite ? '❤️' : '🤍'}</button>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.35rem;flex-shrink:0">
+          <button class="fav-btn ${m.favorite ? 'active' : ''}" onclick="toggleFavorite('${m.id}')" title="${m.favorite ? 'Remove from favorites' : 'Add to favorites'}">
+            ${m.favorite ? '♥' : '♡'}
+          </button>
           <div class="meal-macros">
             <div class="macro-cal">${m.cal}<small> cal</small></div>
             <div class="macro-pills">
@@ -2275,21 +2372,20 @@ function renderMeals(filter = '', complexity = 'all', favOnly = false) {
       <div class="meal-body">
         <div class="meal-desc">${m.desc}</div>
         ${ingList.length ? `
-        <div style="margin-bottom:0.7rem">
-          <div style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem">Ingredients · 1 serving</div>
-          <div style="display:flex;flex-direction:column;gap:0.2rem">
-            ${ingList.map(i => `
-              <div style="display:flex;justify-content:space-between;font-size:0.76rem;padding:0.2rem 0;border-bottom:1px solid rgba(212,196,160,0.2)">
-                <span style="color:var(--mid)">${i.name}</span>
-                <span style="color:var(--muted);font-weight:400">${i.amount} ${i.unit}</span>
-              </div>
-            `).join('')}
-          </div>
+        <div style="margin-bottom:0.6rem">
+          <div class="meal-ing-label">Ingredients · 1 serving (approximate)</div>
+          ${ingList.map(i => `
+            <div class="meal-ing-row">
+              <span>${i.name}</span>
+              <span>${i.amount} ${i.unit}</span>
+            </div>
+          `).join('')}
         </div>` : ''}
         ${m.warn ? `<div class="mtag warn" style="display:inline-block;margin-bottom:0.6rem">⚠ ${m.warn}</div>` : ''}
         <div class="meal-actions">
           <button class="btn-primary" onclick="quickLogMeal('${m.id}')">Log This Meal</button>
           <button class="btn-secondary" onclick="openCustomize('${m.id}')">Customize</button>
+          <button class="btn-icon btn-del" onclick="deleteMeal('${m.id}')" title="Remove this meal">${TRASH_ICON}</button>
         </div>
       </div>
     </div>
@@ -2761,12 +2857,20 @@ async function toggleFavorite(id) {
   if (!meal) return;
   meal.favorite = !meal.favorite;
   await saveMeals();
-  renderMeals(document.getElementById('mealSearch').value);
-  showToast(meal.favorite ? '❤️ Added to favorites' : 'Removed from favorites');
+  renderMeals();
+  showToast(meal.favorite ? '♥ Added to favorites' : 'Removed from favorites');
+}
+
+async function deleteMeal(id) {
+  if (!confirm('Remove this meal from your library?')) return;
+  state.meals = state.meals.filter(m => m.id !== id);
+  await saveMeals();
+  renderMeals();
+  showToast('Meal removed');
 }
 
 function filterMeals(val) {
-  renderMeals(val, 'all', false);
+  renderMeals(val);
 }
 
 // ═══════════════════════════════════════════════
