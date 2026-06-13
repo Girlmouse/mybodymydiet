@@ -620,6 +620,52 @@ body {
 .act-btn.active.med { background: #fff3e0; border-color: #e8a830; color: #9a7a30; }
 .act-btn.active.high { background: var(--terra-pale); border-color: var(--terracotta); color: var(--terracotta); }
 
+/* ── DATA CARD ── */
+.data-card {
+  background: var(--deep);
+  border: 1.5px solid var(--olive);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.data-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--cream);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.data-card-text {
+  font-size: 0.78rem;
+  color: var(--sand-light);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.data-card-btns { display: flex; gap: 0.6rem; }
+
+.data-btn {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.data-btn.export { background: var(--terracotta); color: white; }
+.data-btn.export:active { background: var(--terra-light); }
+.data-btn.import { background: rgba(255,255,255,0.08); color: var(--sand-light); border: 1.5px solid rgba(255,255,255,0.18); }
+.data-btn.import:active { background: rgba(255,255,255,0.14); }
+
 /* ── STATS ── */
 .stats-grid {
   display: grid;
@@ -1209,6 +1255,17 @@ body {
   <div class="section-head">
     <div class="section-title">My <em>Stats</em></div>
   </div>
+
+  <div class="data-card">
+    <div class="data-card-title">📦 My Data</div>
+    <div class="data-card-text">Export everything — pantry, meals, log, settings — into one file you can save, move to another browser, or restore from later. Nothing is ever sent anywhere.</div>
+    <div class="data-card-btns">
+      <button class="data-btn export" onclick="exportData()">⬇ Export My Data</button>
+      <button class="data-btn import" onclick="document.getElementById('importFileInput2').click()">⬆ Import Data</button>
+      <input type="file" id="importFileInput2" accept=".json" style="display:none" onchange="importData(this)">
+    </div>
+  </div>
+
   <div id="statsContent"></div>
 </div>
 
