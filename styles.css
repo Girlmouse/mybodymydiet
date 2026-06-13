@@ -82,6 +82,7 @@ body {
 }
 
 .nav-link:hover { color: var(--orange); background: rgba(226,115,13,0.1); }
+.nav-link.active { color: var(--orange); }
 
 /* ── PAGE HERO (category pages) ── */
 .page-hero {
