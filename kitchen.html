@@ -645,6 +645,9 @@ body {
 }
 
 .data-card-btns { display: flex; gap: 0.6rem; }
+.data-card-section { margin-bottom: 0.3rem; }
+.data-card-label { font-size: 0.62rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive-light); margin-bottom: 0.4rem; }
+.data-card-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1rem 0; }
 
 .data-btn {
   flex: 1;
@@ -1258,11 +1261,23 @@ body {
 
   <div class="data-card">
     <div class="data-card-title">📦 My Data</div>
-    <div class="data-card-text">Export everything — pantry, meals, log, settings — into one file you can save, move to another browser, or restore from later. Nothing is ever sent anywhere.</div>
-    <div class="data-card-btns">
-      <button class="data-btn export" onclick="exportData()">⬇ Export My Data</button>
-      <button class="data-btn import" onclick="document.getElementById('importFileInput2').click()">⬆ Import Data</button>
-      <input type="file" id="importFileInput2" accept=".json" style="display:none" onchange="importData(this)">
+
+    <div class="data-card-section">
+      <div class="data-card-label">🖨 Print / Save as PDF</div>
+      <div class="data-card-text">Generates a clean, readable summary of your pantry and meal library — open the print dialog and choose "Save as PDF" to keep a copy. Works on any device, no file weirdness.</div>
+      <button class="data-btn export" onclick="printMyData()" style="width:100%">Print / Save as PDF</button>
+    </div>
+
+    <div class="data-card-divider"></div>
+
+    <div class="data-card-section">
+      <div class="data-card-label">💾 Backup & Restore</div>
+      <div class="data-card-text">For the technical side — saves everything (pantry statuses, meals, log, settings) into a backup file you can restore from later in the same browser. Useful before resetting or switching browsers.</div>
+      <div class="data-card-btns">
+        <button class="data-btn export" onclick="exportData()">⬇ Backup</button>
+        <button class="data-btn import" onclick="document.getElementById('importFileInput2').click()">⬆ Restore</button>
+        <input type="file" id="importFileInput2" accept=".json" style="display:none" onchange="importData(this)">
+      </div>
     </div>
   </div>
 
@@ -3089,6 +3104,117 @@ function saveSettingsFromModal() {
   renderStats();
   closeModal('modal-settings');
   showToast('Settings saved');
+}
+
+function printMyData() {
+  const haveItems = state.pantry.filter(p => p.status === 'have');
+  const needItems = state.pantry.filter(p => p.status === 'need');
+  const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+
+  // Group pantry by category
+  const groupBy = (items) => items.reduce((acc, p) => {
+    if (!acc[p.category]) acc[p.category] = [];
+    acc[p.category].push(p.name);
+    return acc;
+  }, {});
+
+  const haveBycat = groupBy(haveItems);
+  const needBycat = groupBy(needItems);
+
+  const pantrySection = (title, grouped, emptyMsg) => {
+    const entries = Object.entries(grouped);
+    if (!entries.length) return `<p class="empty">${emptyMsg}</p>`;
+    return entries.map(([cat, items]) => `
+      <div class="cat-group">
+        <div class="cat-name">${cat}</div>
+        <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+    `).join('');
+  };
+
+  const mealsSection = state.meals.map(m => `
+    <div class="meal-row">
+      <div class="meal-row-header">
+        <span class="meal-row-title">${m.title}</span>
+        <span class="meal-row-tag">${(m.tags||[])[0]||''}</span>
+        <span class="meal-row-macros">${m.cal} cal · ${m.protein}g P · ${m.carbs}g C · ${m.fat}g F</span>
+      </div>
+      ${(m.ingredients||[]).length ? `<div class="meal-row-ing">${m.ingredients.map(i => `${i.name} (${i.amount} ${i.unit})`).join(' · ')}</div>` : ''}
+    </div>
+  `).join('');
+
+  const avoidList = (state.settings.avoidList || []);
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Kitchen — ${today}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; color: #1a1a1a; background: white; padding: 2cm; max-width: 21cm; margin: 0 auto; }
+  h1 { font-size: 22pt; font-weight: 700; margin-bottom: 0.15cm; }
+  h1 em { font-style: italic; color: #c45f00; }
+  .date { font-size: 8.5pt; color: #888; letter-spacing: 0.05em; margin-bottom: 0.8cm; font-family: Arial, sans-serif; }
+  .divider { border: none; border-top: 2px solid #e8d5b0; margin: 0.6cm 0; }
+  .section-title { font-size: 13pt; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #582C18; margin-bottom: 0.4cm; font-family: Arial, sans-serif; border-bottom: 1px solid #e8d5b0; padding-bottom: 0.15cm; }
+  .sub-title { font-size: 10.5pt; font-weight: 700; color: #c45f00; margin: 0.3cm 0 0.15cm; font-family: Arial, sans-serif; }
+  .cat-group { margin-bottom: 0.25cm; break-inside: avoid; }
+  .cat-name { font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 0.1cm; font-family: Arial, sans-serif; font-weight: 700; }
+  ul { list-style: disc; padding-left: 0.6cm; columns: 2; column-gap: 0.8cm; }
+  ul li { font-size: 10pt; line-height: 1.6; break-inside: avoid; }
+  .empty { font-size: 10pt; color: #aaa; font-style: italic; }
+  .avoid-tags { display: flex; flex-wrap: wrap; gap: 0.15cm; margin-top: 0.15cm; }
+  .avoid-tag { font-size: 9pt; background: #fde8df; color: #c45f00; padding: 0.1cm 0.3cm; border-radius: 1cm; font-family: Arial, sans-serif; }
+  .meal-row { border-bottom: 1px solid #f0e4cc; padding: 0.2cm 0; break-inside: avoid; }
+  .meal-row-header { display: flex; align-items: baseline; gap: 0.4cm; flex-wrap: wrap; margin-bottom: 0.08cm; }
+  .meal-row-title { font-size: 10.5pt; font-weight: 700; }
+  .meal-row-tag { font-size: 8pt; color: #888; font-family: Arial, sans-serif; }
+  .meal-row-macros { font-size: 8.5pt; color: #c45f00; font-family: Arial, sans-serif; margin-left: auto; }
+  .meal-row-ing { font-size: 8.5pt; color: #666; line-height: 1.5; font-family: Arial, sans-serif; }
+  .footer { margin-top: 0.8cm; font-size: 8pt; color: #bbb; font-family: Arial, sans-serif; text-align: center; }
+  @media print {
+    body { padding: 1.5cm; }
+    @page { margin: 1.5cm; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+<h1>My <em>Kitchen</em></h1>
+<div class="date">Printed ${today} &nbsp;·&nbsp; mybodymydiet.com</div>
+
+<hr class="divider">
+
+${avoidList.length ? `
+<div class="section-title">My Avoid List</div>
+<div class="avoid-tags">${avoidList.map(a => `<span class="avoid-tag">${a}</span>`).join('')}</div>
+<hr class="divider">
+` : ''}
+
+<div class="section-title">My Pantry — In Stock</div>
+${pantrySection('', haveBycat, 'Nothing marked "Have" yet.')}
+
+<hr class="divider">
+
+<div class="section-title">Shopping List — Need to Buy</div>
+${pantrySection('', needBycat, 'Your shopping list is empty.')}
+
+<hr class="divider">
+
+<div class="section-title">My Meal Library (${state.meals.length} meals)</div>
+${mealsSection}
+
+<div class="footer">My Body My Diet &nbsp;·&nbsp; mybodymydiet.com &nbsp;·&nbsp; All data is approximate and for personal tracking only.</div>
+
+<script>window.onload = () => { window.print(); }<\/script>
+</body>
+</html>`;
+
+  const win = window.open('', '_blank');
+  if (!win) { showToast('Allow pop-ups to print'); return; }
+  win.document.write(html);
+  win.document.close();
 }
 
 function exportData() {
